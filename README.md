@@ -1,204 +1,116 @@
-# AirSlide
+# AirSlide 🖐️✨
 
-**Touch-Free Presentation Control using Hand Gestures**
+**Touch-Free Presentation Control Using Hand Gestures**
 
-AirSlide is a Human-Computer Interaction project that lets presenters control their slides using natural hand gestures detected through a standard webcam. No clicker, no keyboard, no returning to the laptop mid-sentence.
-
----
-
-## Problem Statement
-
-Presenters frequently break their flow to advance slides, pause, or switch tools. Traditional presentation remotes add hardware overhead, and touch-based controls require stepping away from the audience. AirSlide solves this by enabling hands-free control through intuitive hand gestures that map directly to presentation actions.
-
-## Gestures
-
-| Gesture | Emoji | Action | Description |
-|---------|-------|--------|-------------|
-| Swipe Right | 👉 | Next Slide | Wave hand to the right |
-| Swipe Left | 👈 | Previous Slide | Wave hand to the left |
-| Open Palm | 🖐️ | Laser Pointer | Hold open palm to activate |
-| Closed Fist | ✊ | Pause / Resume | Make a fist to pause or resume |
-| Pinch | 🤏 | Zoom In / Out | Pinch fingers to toggle zoom |
-
-All gestures require a **0.7-second hold** to confirm, preventing accidental triggers during natural hand movements.
+AirSlide is a Human-Computer Interaction (HCI) project that lets presenters control their slide decks using natural hand gestures captured through any standard webcam. No hardware clickers, no standing next to the laptop, and no awkward interruptions during your talk.
 
 ---
 
-## Tech Stack
+## 🎯 Key Features
+
+- **✌️ Touch-Free Gesture Navigation:** Advance or reverse slides, activate laser pointers, pause, and zoom using natural hand shapes.
+- **📁 Present Your Own Decks (PDF / PowerPoint / Images):** Drag and drop your `.pdf`, `.pptx` (exported to PDF), or slide images to present immediately.
+- **🖥️ Native Fullscreen Presentation Mode:** Edge-to-edge presentation canvas with background gesture recognition and an optional floating Picture-in-Picture (PiP) camera HUD.
+- **⚡ Instant Trigger + 2.0s Safety Cooldown:** Actions execute immediately on the first detected frame (0ms delay), followed by a 2-second refractory lockout so you can naturally rest your arms on the podium with **zero accidental triggers**.
+- **🖐️ Continuous Laser Pointer:** Open your palm to beam an animated laser pointer that follows your hand coordinates across the screen in real-time.
+- **🔒 100% Client-Side & Private:** Powered by Google's MediaPipe via local WebAssembly—no video or data ever leaves your device.
+
+---
+
+## 🕹️ Supported Gestures
+
+| Gesture | Pose | Action | Execution Model |
+|:---|:---:|:---|:---|
+| **Peace Sign** | ✌️ (2 fingers) | **Next Slide** | Instant 0ms trigger + 2.0s safe resting cooldown |
+| **Point Up** | ☝️ (1 finger) | **Previous Slide** | Instant 0ms trigger + 2.0s safe resting cooldown |
+| **Open Palm** | 🖐️ (5 fingers) | **Laser Pointer** | Continuous live coordinate stream (0s interruption) |
+| **Closed Fist** | ✊ (0 fingers) | **Pause / Blackout** | Instant 0ms trigger + 2.0s safe resting cooldown |
+| **Pinch** | 🤏 (Thumb + Index) | **Zoom In / Out** | Instant 0ms trigger + 2.0s safe resting cooldown |
+
+> **Why Static Poses?** Waving or swiping arms across the webcam often triggers accidental slide turns while talking normally. By mapping navigation to distinct finger count shapes (Peace Sign, Point Up), AirSlide eliminates conversational false triggers.
+
+---
+
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Framework | **TanStack Start** (React 19, SSR) |
-| Routing | **TanStack Router** (file-based) |
-| Hand Tracking | **MediaPipe HandLandmarker** via `@mediapipe/tasks-vision` |
-| Styling | **Tailwind CSS 4** + shadcn/ui primitives |
-| Build | **Vite** with Rolldown |
-| Language | **TypeScript 5.8** |
-| Icons | **Lucide React** |
+| **Framework** | [TanStack Start](https://tanstack.com/start) (React 19, SSR) |
+| **Routing** | [TanStack Router](https://tanstack.com/router) (type-safe file routing) |
+| **Vision AI** | Google [MediaPipe Tasks-Vision](https://developers.google.com/mediapipe) (`GestureRecognizer`) |
+| **PDF Rendering** | [pdfjs-dist](https://mozilla.github.io/pdf.js/) (100% client-side PDF rasterization) |
+| **PDF Generation** | [pdf-lib](https://pdf-lib.js.org/) (Course report generator) |
+| **Styling** | [Tailwind CSS 4](https://tailwindcss.com/) + shadcn/ui components |
+| **Language** | TypeScript 5.8 |
+| **Build Tool** | Vite |
 
 ---
 
-## How It Works
-
-### Gesture Recognition Pipeline
-
-1. **Camera Access** - The app requests webcam access via `navigator.mediaDevices.getUserMedia()`.
-2. **MediaPipe HandLandmarker** - Google's pre-trained hand tracking model runs in the browser (GPU-accelerated). It detects 21 landmarks per hand (finger tips, joints, palm base) on every video frame.
-3. **Classification** - Based on the relative positions of the 21 landmarks, the app classifies the hand shape into one of the five gestures:
-   - **Open Palm**: All five fingers extended upward
-   - **Closed Fist**: All fingers curled inward
-   - **Pinch**: Index finger tip close to thumb tip
-   - **Swipe**: Detected through horizontal movement of the wrist landmark across frames
-4. **Hold-to-Confirm** - Once a gesture is stable for 5 consecutive frames (~160ms), the confirmation ring starts filling over 700ms. This prevents accidental triggers and gives the presenter full control.
-5. **Execution** - When the ring completes, the corresponding action executes (slide change, mode toggle, etc.) and a success checkmark appears for 1.4 seconds.
-6. **Cooldown** - A 3-second cooldown prevents re-triggering, ensuring only deliberate gestures take effect.
-
-### Architecture
-
-```
-Camera → MediaPipe HandLandmarker → Landmark Classification
-                                          ↓
-                                    Stable for 5 frames?
-                                          ↓
-                                   Hold-to-Confirm (700ms)
-                                          ↓
-                                    Execute Gesture
-                                          ↓
-                              Update State (slide, paused, zoom, laser)
-                                          ↓
-                             UI Re-renders (Presentation Preview, etc.)
-```
-
-**Key files:**
-
-| File | Purpose |
-|------|---------|
-| `src/hooks/useHandTracking.ts` | Webcam lifecycle, MediaPipe integration, landmark drawing, gesture classification |
-| `src/lib/airslide-store.tsx` | React Context provider - all app state, gesture execution, camera control |
-| `src/components/airslide/CameraFeed.tsx` | Camera UI with canvas overlay showing landmarks |
-| `src/components/airslide/GesturePanel.tsx` | Real-time gesture display with confirmation ring and confidence |
-| `src/components/airslide/PresentationPreview.tsx` | Live slide preview that reacts to gesture commands |
-| `src/components/airslide/ControlBar.tsx` | Start/Stop camera and calibration controls |
-| `src/routes/gestures.tsx` | Gesture guide page with "Try gesture" demo buttons |
-
----
-
-## Setup & Running
+## 🚀 Getting Started
 
 ### Prerequisites
-
 - Node.js 18+
 - npm 9+
-- A webcam (built-in or external)
-- Modern browser (Chrome, Edge, or Firefox)
+- A built-in or USB webcam
+- A modern browser (Chrome, Edge, Safari, or Firefox)
 
-### Steps
+### Installation & Run Locally
 
 ```bash
-# Clone the repository
-git clone <repo-url>
-cd airslide
+# 1. Clone the repository
+git clone https://github.com/yeabalex/Airslide-HCI.git
+cd Airslide-HCI
 
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Start the development server
+# 3. Start the development server
 npm run dev
 ```
 
-The app will be available at **http://localhost:5173**.
-
-### Building for Production
-
-```bash
-npm run build
-npm run preview
-```
+Open **`http://localhost:5173`** in your browser.
 
 ---
 
-## Pages
+## 📖 Application Views
 
-| Route | Description |
-|-------|-------------|
-| `/` | **Dashboard** - Live overview with camera feed, gesture panel, presentation preview, and gesture history |
-| `/live` | **Live Control** - Full-screen camera feed, gesture panel, and presentation preview |
-| `/gestures` | **Gesture Guide** - Interactive guide showing all five gestures with demo buttons |
-| `/settings` | **Settings** - Adjust confirmation time, sensitivity, animation speed, and sound effects |
-| `/about` | **About** - Project background and HCI principles |
-
----
-
-## Development Notes
-
-### Making the Gestures Work (Real Camera Integration)
-
-The original prototype used simulated gesture detection with mock confidence values and ambient flicker effects. To make gestures work with a real webcam:
-
-#### Step 1: Install MediaPipe
-
-```bash
-npm install @mediapipe/tasks-vision
-```
-
-This package provides the `HandLandmarker` class which runs Google's pre-trained hand tracking model entirely in the browser using WebGL/WASM. No server-side processing needed.
-
-#### Step 2: Create the Hand Tracking Hook
-
-`src/hooks/useHandTracking.ts` manages:
-- Creating/destroying `<video>` and `<canvas>` elements in a container ref
-- Requesting camera access (`getUserMedia`) with start/stop lifecycle
-- Initializing the MediaPipe HandLandmarker (model downloads from Google CDN on first load)
-- Running a `requestAnimationFrame` loop that:
-  - Draws the mirrored video frame onto a canvas
-  - Calls `HandLandmarker.detectForVideo()` on each frame
-  - Draws the 21 landmarks and skeleton connections on the canvas
-  - Classifies the hand shape based on landmark positions
-  - Tracks gesture stability (5 consecutive same-gesture frames)
-  - Fires a callback when a stable gesture is detected
-
-#### Step 3: Wire Detection to Execution
-
-The `useHandTracking` hook accepts an `onGestureDetected` callback. The store (`airslide-store.tsx`) passes a handler that:
-1. Checks the app isn't already confirming a gesture or showing success feedback
-2. Calls `triggerGesture()` - starts the hold-to-confirm animation
-3. When the animation completes, calls `executeGesture()` - updates app state
-
-#### Step 4: Update CameraFeed
-
-The camera component mounts `containerRef` from the hook, which owns both the hidden `<video>` and visible `<canvas>`. Grid overlays, corner brackets, and HUD elements remain as before for visual polish.
-
-#### Step 5: Remove Mock Data
-
-Removed the simulated confidence flicker interval, hardcoded `handDetected: true`, and the "Simulate gesture" buttons from GesturePanel.
-
-### Why No External MediaPipe Parser Files
-
-The `@mediapipe/tasks-vision` package includes the WASM runtime. The model itself (~10-15MB) is hosted on Google's CDN and downloaded once when the browser first loads the app. No additional file downloads or server setup needed.
+- **`/present` (Present Deck):** Upload your PDF/PowerPoint slides, launch edge-to-edge Fullscreen mode, and control slides hands-free with the floating PiP camera tracker.
+- **`/live` (Live Control):** Real-time gesture testing lab showing hand skeleton overlays, confidence meters, and event logs.
+- **`/gestures` (Gesture Guide):** Interactive visual guide explaining the 5 gesture shapes and their design rationale.
+- **`/report` (HCI Project Report):** Full academic course project report with an in-app downloadable PDF (`AirSlide_HCI_Report.pdf`).
+- **`/settings` (Settings):** Configure sensitivity, audio feedback, and system preferences.
+- **`/members` (Team):** Group members and project contributions.
 
 ---
 
-## HCI Principles Applied
+## 🧠 Human-Computer Interaction (HCI) Design
 
-| Principle | Implementation |
-|-----------|---------------|
-| **Visibility of system status** | Live confidence bar, HAND indicator, confirmation ring, success checkmark |
-| **Error prevention** | 700ms hold-to-confirm prevents accidental triggers |
-| **Immediate feedback** | Every gesture shows real-time ring filling, then success confirmation |
-| **Accessibility** | Keyboard cancel (Esc), high contrast, large emoji indicators |
-| **User control** | Cancel gesture at any time, adjustable confirmation sensitivity |
+AirSlide was built following established HCI principles:
 
----
-
-## Limitations
-
-- **MediaPipe model download** requires internet on first load (~10-15MB cached after that)
-- **GPU requirement** - HandLandmarker uses WebGL; may fall back to CPU on older devices
-- **Lighting sensitivity** - Hand detection works best in well-lit environments
-- **Single hand** - Currently tracks one hand; no two-hand gestures
+1. **Don Norman's Action Cycle:**
+   - *Gulf of Execution:* Solved by self-explanatory finger counts (1 finger = back, 2 fingers = next).
+   - *Gulf of Evaluation:* Solved by real-time skeleton overlays, on-screen confidence scores (e.g. `AI: Victory 95%`), and active laser dots.
+2. **Motor Ergonomics (Preventing "Gorilla Arm" Fatigue):** Sustained mid-air gesturing causes shoulder strain. AirSlide's 2.0-second cooldown lets presenters raise a hand for just a fraction of a second and immediately rest on the table.
+3. **Solving the "Midas Touch" Dilemma:** Eliminates false triggers caused by speaking with hands through downward motion suppression and refractory lockouts.
+4. **Nielsen's Usability Heuristics:**
+   - *Visibility of system status* (Real-time HUD)
+   - *Match with real world* (Universal pointing and counting metaphors)
+   - *User control and freedom* (Multi-modal interaction with keyboard fallbacks)
+   - *Error prevention* (Refractory lockouts and motion filters)
 
 ---
 
-## License
+## 👥 Authors & Academic Context
 
-Academic project - built for HCI coursework demonstration.
+Developed as an HCI Course Project for **HiLCoE School of Computer Science and Technology** (July 2026):
+
+- **Nafyad Fantaye**
+- **Yeabsira Alemu**
+- **Ezana Tadesse**
+- **Zerubabel Fekadu**
+
+---
+
+## 📄 License
+
+Academic Coursework Project &middot; Open Source under the MIT License.
