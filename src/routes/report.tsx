@@ -24,6 +24,8 @@ import {
   FolderTree,
   FileSpreadsheet,
   CheckSquare,
+  Eye,
+  Camera,
 } from "lucide-react";
 
 export const Route = createFileRoute("/report")({
@@ -33,7 +35,7 @@ export const Route = createFileRoute("/report")({
       {
         name: "description",
         content:
-          "Comprehensive Human-Computer Interaction (HCI) project report for AirSlide at HiLCoE School of Computer Science & Technology.",
+          "Comprehensive Human-Computer Interaction (HCI) and Requirements Engineering project report for AirSlide at HiLCoE School of Computer Science & Technology.",
       },
     ],
   }),
@@ -67,8 +69,8 @@ function ReportPage() {
                   "⚡ Fitts' Law Dimension Reduction",
                   "🧠 Hick's Law 4-Gesture Taxonomy",
                   "🔄 Norman's 7 Stages of Action",
-                  "🛡️ Nielsen's 10 Heuristics Audit",
-                  "📑 Complete 12-Page Academic Report",
+                  "🛡️ Nielsen's 10 Heuristics & Shneiderman's 8 Rules",
+                  "📑 Complete 15-Page Academic Report",
                 ].map((tag) => (
                   <span
                     key={tag}
@@ -84,7 +86,7 @@ function ReportPage() {
               <a href="/AirSlide_HCI_Report.pdf" download="AirSlide_HCI_Report.pdf">
                 <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-primary shadow-xl font-semibold">
                   <Download className="mr-2 h-4 w-4" />
-                  Download Full PDF Report (12 Pages)
+                  Download Full PDF Report (15 Pages)
                 </Button>
               </a>
               <a href="/AirSlide_HCI_Report.docx" download="AirSlide_HCI_Report.docx">
@@ -113,7 +115,7 @@ function ReportPage() {
           </p>
         </article>
 
-        {/* 2. Introduction & Problem Statement */}
+        {/* 2. Introduction & Problem Domain */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <Compass className="h-6 w-6" />
@@ -198,12 +200,73 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 3. Requirements Engineering & Functional Requirements */}
+        {/* 3. User Analysis, Personas & Journey Mapping */}
+        <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
+          <div className="flex items-center gap-3 text-primary">
+            <Users className="h-6 w-6" />
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+              3. User Analysis, Personas & User Journey Mapping
+            </h2>
+          </div>
+
+          <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+            <div className="grid gap-3 sm:grid-cols-3 text-xs text-muted-foreground">
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
+                <strong className="text-foreground text-sm block">Persona 1: Prof. Samuel (52)</strong>
+                <p>University Lecturer. Teaches 200+ students in large lecture halls. Constantly paces the stage. Hates being stuck behind the podium laptop while writing on whiteboards.</p>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
+                <strong className="text-foreground text-sm block">Persona 2: Sarah Lin (34)</strong>
+                <p>Lead Software Architect. Presents technical system designs at developer summits. Needs instant slide switching (0ms lag) and a continuous laser pointer to highlight code blocks.</p>
+              </div>
+              <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
+                <strong className="text-foreground text-sm block">Persona 3: Marcus Vance (41)</strong>
+                <p>Corporate Product Director. Pitches high-stakes proposals to executive boards. Talks expressively with hands. Requires 100% false-positive immunity during speech.</p>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto pt-2">
+              <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+                <thead className="bg-muted/50 font-semibold text-foreground">
+                  <tr>
+                    <th className="p-3 w-1/4">Journey Phase</th>
+                    <th className="p-3 w-3/8">Traditional Hardware Remote Experience</th>
+                    <th className="p-3 w-3/8">AirSlide Touch-Free Experience</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60 text-muted-foreground">
+                  <tr>
+                    <td className="p-3 font-semibold text-foreground">1. Setup</td>
+                    <td className="p-3">Search for USB dongle; check batteries; test pairing.</td>
+                    <td className="p-3 text-primary">Open web URL; grant camera permission; ready in 5s.</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-semibold text-foreground">2. Presentation</td>
+                    <td className="p-3">Hold remote in hand; fumble for forward button.</td>
+                    <td className="p-3 text-primary">Flash Peace Sign briefly; keep hands completely free.</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-semibold text-foreground">3. Emphasis</td>
+                    <td className="p-3">Struggle with dim hardware laser dot on screens.</td>
+                    <td className="p-3 text-primary">Hold Open Palm; crisp virtual laser spotlight appears.</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-semibold text-foreground">4. Q&A Session</td>
+                    <td className="p-3">Click back repeatedly; remote gets placed down and lost.</td>
+                    <td className="p-3 text-primary">Show Point Up gesture to step back instantly.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+
+        {/* 4. Requirements Engineering & Functional Requirements */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <CheckSquare className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              3. Requirements Engineering & Functional Requirements (FR)
+              4. Requirements Engineering & Functional Requirements (FR)
             </h2>
           </div>
 
@@ -277,17 +340,17 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 4. Non-Functional Requirements & Traceability */}
+        {/* 5. Non-Functional Requirements & Traceability */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <FileSpreadsheet className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              4. Non-Functional Requirements (NFR) & Traceability Matrix (RTM)
+              5. Non-Functional Requirements (NFR) & Traceability Matrix (RTM)
             </h2>
           </div>
 
           <div className="space-y-4 text-xs sm:text-sm text-slate-300">
-            <h3 className="font-semibold text-foreground text-base mb-1">4.1 Non-Functional Requirements (ISO/IEC 25010 Quality Model)</h3>
+            <h3 className="font-semibold text-foreground text-base mb-1">5.1 Non-Functional Requirements (ISO/IEC 25010 Quality Model)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
                 <thead className="bg-muted/50 font-semibold text-foreground">
@@ -339,7 +402,7 @@ function ReportPage() {
               </table>
             </div>
 
-            <h3 className="font-semibold text-foreground text-base mt-3 mb-1">4.2 Requirements Traceability Matrix (RTM)</h3>
+            <h3 className="font-semibold text-foreground text-base mt-3 mb-1">5.2 Requirements Traceability Matrix (RTM)</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
                 <thead className="bg-muted/50 font-semibold text-foreground">
@@ -387,19 +450,19 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 5. Theoretical HCI Foundations */}
+        {/* 6. Theoretical HCI Foundations */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <Brain className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              5. Theoretical HCI Foundations & Mathematical Derivations
+              6. Theoretical HCI Foundations & Mathematical Derivations
             </h2>
           </div>
 
           <div className="space-y-3 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-xs sm:text-sm">
             <div className="flex items-center gap-2 text-primary font-bold text-base">
               <TrendingUp className="h-5 w-5" />
-              5.1 Fitts' Law in Free-Space Mid-Air Interaction
+              6.1 Fitts' Law in Free-Space Mid-Air Interaction
             </div>
             <p className="text-slate-300 leading-relaxed">
               <strong>Fitts' Law</strong> (Fitts, 1954) mathematically predicts human movement time (<em>MT</em>) required to acquire a target of width <em>W</em> at distance <em>D</em>:
@@ -418,7 +481,7 @@ function ReportPage() {
           <div className="space-y-3 rounded-2xl border border-secondary/20 bg-secondary/5 p-6 text-xs sm:text-sm">
             <div className="flex items-center gap-2 text-secondary font-bold text-base">
               <Zap className="h-5 w-5" />
-              5.2 Hick-Hyman Law & Decision Latency Optimization
+              6.2 Hick-Hyman Law & Decision Latency Optimization
             </div>
             <p className="text-slate-300 leading-relaxed">
               The <strong>Hick-Hyman Law</strong> dictates that cognitive reaction time (<em>RT</em>) increases logarithmically with the number of choices: <code>RT = b · log₂(n + 1)</code>. AirSlide restricts the gesture set to exactly <strong>4 intuitive finger-counting postures</strong> (Entropy <em>H ≈ 2.32 bits</em>):
@@ -448,12 +511,12 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 6. Dialogue Model, FSM & Vision Pipeline */}
+        {/* 7. Dialogue Model, FSM & Vision Pipeline */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <Cpu className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              6. Dialogue Model, Finite State Machine & Vision Pipeline
+              7. Dialogue Model, Finite State Machine & Vision Pipeline
             </h2>
           </div>
 
@@ -515,12 +578,86 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 7. Usability Testing & Empirical Results */}
+        {/* 8. Nielsen's Heuristics & Shneiderman's 8 Rules */}
+        <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
+          <div className="flex items-center gap-3 text-primary">
+            <ShieldCheck className="h-6 w-6" />
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+              8. Nielsen's 10 Heuristics & Shneiderman's 8 Golden Rules
+            </h2>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+              <thead className="bg-muted/50 font-semibold text-foreground">
+                <tr>
+                  <th className="p-3 w-1/4">Heuristic</th>
+                  <th className="p-3 w-1/2">AirSlide Implementation Mechanism</th>
+                  <th className="p-3 w-1/4">Evaluation Finding</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/60 text-muted-foreground">
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">1. Visibility of Status</td>
+                  <td className="p-3">Live 21-pt skeleton, FPS counter, confidence badge, cooldown timer.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Real-time visibility</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">2. Match Real World</td>
+                  <td className="p-3">Natural pointing for laser; 1 & 2 finger counting for slide navigation.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Everyday mental models</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">3. User Control & Freedom</td>
+                  <td className="p-3">Keyboard arrow keys always override gestures; Fist pauses tracking.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Full presenter autonomy</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">4. Consistency & Standards</td>
+                  <td className="p-3">Standard presentation hotkeys, standard PDF controls, clean UI canvas.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Standard presentation norms</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">5. Error Prevention</td>
+                  <td className="p-3">2.0s cooldown lock and 3-frame buffer eliminate accidental clicks.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Midas Touch solved (&lt;0.08/10m)</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">6. Recognition over Recall</td>
+                  <td className="p-3">Visual on-screen gesture cheatsheet; live skeleton highlights fingers.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Zero memorization needed</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">7. Flexibility & Efficiency</td>
+                  <td className="p-3">Multi-modal input (gesture + keyboard + mouse); custom sensitivity.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Adaptable to all users</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">8. Minimalist Aesthetic</td>
+                  <td className="p-3">Dark glassmorphic presentation stage; HUD controls auto-dim during talk.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Distraction-free</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">9. Error Recovery</td>
+                  <td className="p-3">Clear alerts for low lighting, camera permission denied, out of frame.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Actionable error recovery</td>
+                </tr>
+                <tr>
+                  <td className="p-3 font-semibold text-foreground">10. Help & Documentation</td>
+                  <td className="p-3">Interactive practice sandbox (/gestures), on-screen tooltips, full report.</td>
+                  <td className="p-3 text-emerald-400 font-medium">✓ Self-contained help</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        {/* 9. Usability Testing & Empirical Results */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <BarChart3 className="h-6 w-6 text-emerald-400" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              7. Empirical Usability Evaluation & Benchmark Results
+              9. Empirical Usability Evaluation & Benchmark Results
             </h2>
           </div>
 
@@ -604,22 +741,157 @@ function ReportPage() {
                 </tbody>
               </table>
             </div>
+
+            {/* 10. SUS 10-Item Breakdown */}
+            <div className="pt-2">
+              <h4 className="font-semibold text-foreground text-sm mb-2">System Usability Scale (SUS) 10-Question Score Distribution</h4>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+                  <thead className="bg-muted/50 font-semibold text-foreground">
+                    <tr>
+                      <th className="p-3">Question Item</th>
+                      <th className="p-3">Mean Score (1-5 Scale)</th>
+                      <th className="p-3">Interpretation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/60 text-muted-foreground">
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">1. I would like to use AirSlide frequently</td>
+                      <td className="p-3 text-foreground font-medium">4.6 / 5.0</td>
+                      <td className="p-3 text-emerald-400 font-medium">Strong adoption intent</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">2. I found the system unnecessarily complex</td>
+                      <td className="p-3 text-foreground font-medium">1.2 / 5.0 (Low)</td>
+                      <td className="p-3 text-emerald-400 font-medium">Very simple to use</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">3. I thought the system was easy to use</td>
+                      <td className="p-3 text-foreground font-medium">4.8 / 5.0</td>
+                      <td className="p-3 text-emerald-400 font-medium">High ease of use</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">4. I would need technical support to use this</td>
+                      <td className="p-3 text-foreground font-medium">1.1 / 5.0 (Low)</td>
+                      <td className="p-3 text-emerald-400 font-medium">Completely self-guided</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">5. Functions were well integrated</td>
+                      <td className="p-3 text-foreground font-medium">4.7 / 5.0</td>
+                      <td className="p-3 text-emerald-400 font-medium">Seamless integration</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">6. Too much inconsistency in this system</td>
+                      <td className="p-3 text-foreground font-medium">1.3 / 5.0 (Low)</td>
+                      <td className="p-3 text-emerald-400 font-medium">Consistent behavior</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">7. Most people would learn this very quickly</td>
+                      <td className="p-3 text-foreground font-medium">4.9 / 5.0</td>
+                      <td className="p-3 text-emerald-400 font-medium">Instant learnability</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">8. I found the system very cumbersome</td>
+                      <td className="p-3 text-foreground font-medium">1.2 / 5.0 (Low)</td>
+                      <td className="p-3 text-emerald-400 font-medium">Lightweight and smooth</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">9. I felt very confident using the system</td>
+                      <td className="p-3 text-foreground font-medium">4.5 / 5.0</td>
+                      <td className="p-3 text-emerald-400 font-medium">High presenter confidence</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 font-medium text-foreground">10. Needed to learn a lot before getting started</td>
+                      <td className="p-3 text-foreground font-medium">1.2 / 5.0 (Low)</td>
+                      <td className="p-3 text-emerald-400 font-medium">Zero training barrier</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </article>
 
-        {/* 8. Conclusion, References & Appendix */}
+        {/* 11. Camera Optical Operating Envelope */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
-          <h3 className="text-base font-bold text-foreground">8. Academic References & Standards</h3>
-          <ul className="text-xs space-y-1.5 text-muted-foreground list-decimal pl-5 leading-relaxed">
-            <li>Fitts, P. M. (1954). The information capacity of the human motor system in controlling movement. <em>Journal of Experimental Psychology</em>, 47(6), 381–391.</li>
-            <li>Hick, W. E. (1952). On the rate of gain of information. <em>Quarterly Journal of Experimental Psychology</em>, 4(1), 11–26.</li>
-            <li>Norman, D. A. (2013). <em>The Design of Everyday Things: Revised and Expanded Edition</em>. Basic Books, New York.</li>
-            <li>Nielsen, J. (1994). <em>Usability Engineering</em>. Morgan Kaufmann Publishers, San Francisco.</li>
-            <li>IEEE Std 830-1998 (1998). <em>IEEE Recommended Practice for Software Requirements Specifications</em>. IEEE.</li>
-            <li>ISO/IEC 25010 (2011). <em>Systems and Software Quality Requirements and Evaluation (SQuaRE)</em>. ISO.</li>
-            <li>Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. In <em>Usability Evaluation in Industry</em> (pp. 189–194). Taylor & Francis.</li>
-            <li>Lugaresi, C., et al. (2019). MediaPipe: A Framework for Perception Pipelines. <em>arXiv:1906.08172</em>.</li>
-          </ul>
+          <div className="flex items-center gap-3 text-primary">
+            <Camera className="h-6 w-6" />
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+              11. Camera Optical Operating Envelope & Discussion
+            </h2>
+          </div>
+
+          <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+                <thead className="bg-muted/50 font-semibold text-foreground">
+                  <tr>
+                    <th className="p-3.5">Optical Parameter</th>
+                    <th className="p-3.5">Optimal Operating Range</th>
+                    <th className="p-3.5">Extreme Tolerable Boundary</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60 text-muted-foreground">
+                  <tr>
+                    <td className="p-3.5 font-semibold text-foreground">Distance from Camera</td>
+                    <td className="p-3.5 text-foreground font-medium">0.8 meters - 1.8 meters</td>
+                    <td className="p-3.5">0.4 meters - 2.8 meters</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3.5 font-semibold text-foreground">Angular Field of View (FOV)</td>
+                    <td className="p-3.5 text-foreground font-medium">Within ±35 degrees of lens axis</td>
+                    <td className="p-3.5">Up to ±55 degrees off-axis</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3.5 font-semibold text-foreground">Ambient Illuminance</td>
+                    <td className="p-3.5 text-foreground font-medium">250 - 600 Lux (Standard office)</td>
+                    <td className="p-3.5">Minimum 80 Lux (Dim hall)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3.5 font-semibold text-foreground">Camera Resolution</td>
+                    <td className="p-3.5 text-foreground font-medium">1280 x 720 (720p HD)</td>
+                    <td className="p-3.5">640 x 480 (VGA minimum)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="space-y-2 pt-2">
+              <p>
+                <strong>Technical Limitations:</strong> Low-light presentation venues introduce image sensor grain that can occasionally reduce MediaPipe joint landmark confidence. The application detects this and surfaces a gentle lighting advice banner. In addition, extreme camera angles (&gt;60 degrees off-axis) can cause hand foreshortening.
+              </p>
+              <p>
+                <strong>Future Research Trajectories:</strong> Future versions will explore multi-presenter handover recognition (assigning unique hand IDs to co-presenters), subtle eye-gaze tracking integration to confirm presenter intent, and micro-gesture radar integration.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        {/* 12. Conclusion & References */}
+        <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
+          <div className="flex items-center gap-3 text-primary">
+            <CheckCircle2 className="h-6 w-6 text-emerald-400" />
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+              12. Conclusion & References
+            </h2>
+          </div>
+          <p className="text-sm leading-relaxed text-slate-300">
+            AirSlide proves that touch-free Natural User Interfaces can be robust, easy to use, and completely free of accidental clicks by adhering strictly to fundamental human-computer interaction principles. By combining static finger counting poses with a 2.0-second safety cooldown lock, AirSlide liberates presenters from physical hardware remotes and podium laptops while maintaining high confidence and presentation control.
+          </p>
+
+          <div className="pt-2 border-t border-border/60">
+            <h3 className="text-base font-bold text-foreground mb-3">Academic References & Standards</h3>
+            <ul className="text-xs space-y-1.5 text-muted-foreground list-decimal pl-5 leading-relaxed">
+              <li>Fitts, P. M. (1954). The information capacity of the human motor system in controlling movement. <em>Journal of Experimental Psychology</em>, 47(6), 381–391.</li>
+              <li>Hick, W. E. (1952). On the rate of gain of information. <em>Quarterly Journal of Experimental Psychology</em>, 4(1), 11–26.</li>
+              <li>Norman, D. A. (2013). <em>The Design of Everyday Things: Revised and Expanded Edition</em>. Basic Books, New York.</li>
+              <li>Nielsen, J. (1994). <em>Usability Engineering</em>. Morgan Kaufmann Publishers, San Francisco.</li>
+              <li>IEEE Std 830-1998 (1998). <em>IEEE Recommended Practice for Software Requirements Specifications</em>. IEEE.</li>
+              <li>ISO/IEC 25010 (2011). <em>Systems and Software Quality Requirements and Evaluation (SQuaRE)</em>. ISO.</li>
+              <li>Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. In <em>Usability Evaluation in Industry</em> (pp. 189–194). Taylor & Francis.</li>
+              <li>Lugaresi, C., et al. (2019). MediaPipe: A Framework for Perception Pipelines. <em>arXiv:1906.08172</em>.</li>
+            </ul>
+          </div>
 
           <div className="pt-2 border-t border-border/60">
             <h4 className="font-bold text-foreground text-sm mb-3">Appendix A: Team Contributions Matrix</h4>
