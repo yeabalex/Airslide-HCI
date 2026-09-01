@@ -7,7 +7,6 @@ import {
   FileUp,
   Maximize,
   Minimize,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
   Pause,
@@ -39,31 +38,6 @@ export const Route = createFileRoute("/present")({
   }),
   component: PresentPage,
 });
-
-const SAMPLE_DECKS: { name: string; description: string; slides: SlideData[] }[] = [
-  {
-    name: "🚀 AI & HCI Technology Deck",
-    description: "Sample presentation on Natural User Interfaces and Vision Models.",
-    slides: [
-      { id: "s1", type: "default", title: "Next-Gen Human Computer Interaction", subtitle: "Zero Touch, Pure Intent" },
-      { id: "s2", type: "default", title: "The End of Physical Clickers", subtitle: "Why hardware remotes are obsolete" },
-      { id: "s3", type: "default", title: "On-Device Edge Vision", subtitle: "WebAssembly + GPU local inference" },
-      { id: "s4", type: "default", title: "Continuous Trajectory Tracking", subtitle: "Understanding gestures in real-time" },
-      { id: "s5", type: "default", title: "Accessibility & Inclusivity", subtitle: "Designed for all presenter styles" },
-      { id: "s6", type: "default", title: "Thank You & Q/A", subtitle: "Live interactive demo" },
-    ],
-  },
-  {
-    name: "📊 Quarterly Business Review",
-    description: "Sample corporate executive report slide deck.",
-    slides: [
-      { id: "b1", type: "default", title: "Q3 Performance Overview", subtitle: "Global Revenue & User Growth" },
-      { id: "b2", type: "default", title: "Key Milestones Achieved", subtitle: "Product launches and strategic partnerships" },
-      { id: "b3", type: "default", title: "Financial Breakdown", subtitle: "+42% YoY growth in active users" },
-      { id: "b4", type: "default", title: "Strategic Priorities for Q4", subtitle: "Expansion into enterprise workflows" },
-    ],
-  },
-];
 
 function PresentPage() {
   const s = useAirSlide();
@@ -468,7 +442,7 @@ function PresentPage() {
           </div>
         </div>
 
-        {/* Right Column: Camera Preview, Upload Deck & Sample Decks */}
+        {/* Right Column: Camera Preview & Upload Deck */}
         <div className="space-y-6 lg:col-span-4">
           {/* Live Gesture Camera Feed Preview */}
           <div className="glass rounded-2xl p-5">
@@ -552,41 +526,6 @@ function PresentPage() {
                   </div>
                 </>
               )}
-            </div>
-          </div>
-
-          {/* Quick Sample Decks */}
-          <div className="glass rounded-2xl p-5">
-            <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
-              Preloaded Presentation Decks
-            </div>
-
-            <div className="space-y-2.5">
-              <button
-                onClick={s.loadDefaultDeck}
-                className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-muted/20 p-3 text-left transition-colors hover:border-primary/40 hover:bg-primary/5"
-              >
-                <div>
-                  <div className="text-xs font-semibold text-foreground">
-                    ✨ AirSlide System Overview (12 slides)
-                  </div>
-                  <div className="text-[10px] text-muted-foreground">Default project deck</div>
-                </div>
-              </button>
-
-              {SAMPLE_DECKS.map((d) => (
-                <button
-                  key={d.name}
-                  onClick={() => s.setCustomDeck(d.slides)}
-                  className="flex w-full items-center justify-between rounded-xl border border-border/60 bg-muted/20 p-3 text-left transition-colors hover:border-primary/40 hover:bg-primary/5"
-                >
-                  <div>
-                    <div className="text-xs font-semibold text-foreground">{d.name}</div>
-                    <div className="text-[10px] text-muted-foreground">{d.description}</div>
-                  </div>
-                </button>
-              ))}
             </div>
           </div>
 
