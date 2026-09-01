@@ -18,7 +18,7 @@ import {
 import fs from "fs";
 import path from "path";
 
-async function generateCompleteAcademicDocxReport() {
+async function generateComplete12PageDocxReport() {
   const primaryColor = "1E3A8A";
   const secondaryColor = "2563EB";
   const darkNeutral = "1E293B";
@@ -41,7 +41,7 @@ async function generateCompleteAcademicDocxReport() {
       shading: isHeader
         ? { fill: primaryColor, type: ShadingType.CLEAR }
         : { fill: lightBg, type: ShadingType.CLEAR },
-      margins: { top: 100, bottom: 100, left: 140, right: 140 },
+      margins: { top: 90, bottom: 90, left: 130, right: 130 },
       children: [
         new Paragraph({
           children: [
@@ -63,7 +63,7 @@ async function generateCompleteAcademicDocxReport() {
       default: {
         document: {
           run: { font: "Arial", size: 21, color: darkNeutral },
-          paragraph: { spacing: { line: 260, before: 80, after: 80 } },
+          paragraph: { spacing: { line: 260, before: 70, after: 70 } },
         },
       },
     },
@@ -81,7 +81,7 @@ async function generateCompleteAcademicDocxReport() {
                 alignment: AlignmentType.RIGHT,
                 children: [
                   new TextRun({
-                    text: "AirSlide: HCI Project Report | HiLCoE School of Computer Science",
+                    text: "AirSlide: Touch-Free Presentation Control | HCI Project Report",
                     size: 16,
                     color: "64748B",
                     font: "Arial",
@@ -110,7 +110,7 @@ async function generateCompleteAcademicDocxReport() {
           // Title Page Banner
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 200, after: 80 },
+            spacing: { before: 200, after: 70 },
             children: [
               new TextRun({
                 text: "HiLCoE School of Computer Science and Technology",
@@ -123,10 +123,10 @@ async function generateCompleteAcademicDocxReport() {
           }),
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 40, after: 150 },
+            spacing: { before: 30, after: 120 },
             children: [
               new TextRun({
-                text: "Department of Software Engineering · Human-Computer Interaction Course Project",
+                text: "Department of Software Engineering · Human-Computer Interaction (HCI) Course Project",
                 italics: true,
                 size: 19,
                 color: "64748B",
@@ -135,7 +135,7 @@ async function generateCompleteAcademicDocxReport() {
           }),
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 100, after: 120 },
+            spacing: { before: 80, after: 120 },
             children: [
               new TextRun({
                 text: "AirSlide: Touch-Free Presentation Control Using Real-Time Hand Tracking and Cognitive HCI Principles",
@@ -163,7 +163,7 @@ async function generateCompleteAcademicDocxReport() {
                   new TableCell({
                     width: { size: 55, type: WidthType.PERCENTAGE },
                     shading: { fill: lightBg, type: ShadingType.CLEAR },
-                    margins: { top: 100, bottom: 100, left: 140, right: 140 },
+                    margins: { top: 90, bottom: 90, left: 130, right: 130 },
                     children: [
                       new Paragraph({
                         children: [
@@ -178,7 +178,7 @@ async function generateCompleteAcademicDocxReport() {
                   new TableCell({
                     width: { size: 45, type: WidthType.PERCENTAGE },
                     shading: { fill: lightBg, type: ShadingType.CLEAR },
-                    margins: { top: 100, bottom: 100, left: 140, right: 140 },
+                    margins: { top: 90, bottom: 90, left: 130, right: 130 },
                     children: [
                       new Paragraph({
                         children: [
@@ -195,21 +195,21 @@ async function generateCompleteAcademicDocxReport() {
             ],
           }),
 
-          new Paragraph({ spacing: { before: 200, after: 80 }, children: [] }),
+          new Paragraph({ spacing: { before: 180, after: 70 }, children: [] }),
 
           // 1. Abstract
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 100 },
+            spacing: { before: 180, after: 80 },
             children: [
               new TextRun({ text: "1. Abstract & Executive Summary", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 80, after: 80 },
+            spacing: { before: 70, after: 70 },
             children: [
               new TextRun({
-                text: "This project report presents the human-centered design, technical engineering, and empirical usability evaluation of AirSlide, a browser-based presentation controller that enables touch-free slide navigation using natural hand gestures detected through a standard laptop webcam. Traditional presentation methods—such as leaning over a laptop to press arrow keys, carrying a dedicated RF clicker with dead batteries, or tapping on a smartphone screen—introduce physical tethering, posture lock, and visual split-attention friction.\n\nAirSlide runs Google's MediaPipe HandLandmarker neural model entirely inside the user's web browser using WebAssembly (WASM) and WebGL hardware acceleration, providing zero network latency and total data privacy. To solve the classic 'Midas Touch' dilemma (where normal conversational hand gestures trigger unintended slide changes) and eliminate 'Gorilla Arm' shoulder fatigue, AirSlide establishes a robust interaction paradigm: replacing dynamic swipe motions with static finger counting poses, triggering slide changes instantly (0ms latency), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest. In formal usability testing with 12 participants across 850 gestures, AirSlide achieved a 100% task completion rate, a 96.4% gesture recognition accuracy, an accidental trigger rate of only 0.08 events per 10 minutes of speaking, and an exceptional System Usability Scale (SUS) score of 84.25 (Grade A).",
+                text: "This comprehensive academic project report presents the human-centered design, technical architecture, and empirical usability evaluation of AirSlide, a browser-based presentation controller that enables touch-free slide navigation using natural hand gestures detected via a standard webcam. Traditional presentation control methods—such as standing behind a laptop keyboard, carrying an RF clicker with battery failure risks, or fumbling with mobile companion remotes—introduce physical tethering, posture lock, and visual split-attention friction.\n\nAirSlide solves these challenges by running Google's MediaPipe HandLandmarker neural model entirely client-side inside the user's web browser using WebAssembly (WASM) and WebGL hardware acceleration, providing zero network latency and total data privacy. To solve the classic 'Midas Touch' problem (where normal conversational hand gestures trigger unintended slide changes) and eliminate 'Gorilla Arm' shoulder fatigue, AirSlide establishes a robust interaction paradigm: replacing dynamic swipe motions with static finger counting poses, triggering slide changes instantly (0ms latency), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest. In formal usability testing with 12 participants across 850 gestures, AirSlide achieved a 100% task completion rate, a 96.4% gesture recognition accuracy, an accidental trigger rate of only 0.08 events per 10 minutes of speaking, and an exceptional System Usability Scale (SUS) score of 84.25 (Grade A).",
                 size: 20,
               }),
             ],
@@ -218,43 +218,45 @@ async function generateCompleteAcademicDocxReport() {
           // 2. Table of Contents
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
               new TextRun({ text: "2. Table of Contents & Structure", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 60, after: 60 },
+            spacing: { before: 50, after: 50 },
             children: [
               new TextRun({ text: "• Section 1: Abstract & Executive Summary\n", size: 19 }),
               new TextRun({ text: "• Section 2: Table of Contents & Structure\n", size: 19 }),
               new TextRun({ text: "• Section 3: Introduction, Problem Statement & Modality Comparison Matrix\n", size: 19 }),
-              new TextRun({ text: "• Section 4: Task Context, User Analysis & Hierarchical Task Analysis (HTA)\n", size: 19 }),
-              new TextRun({ text: "• Section 5: Theoretical HCI Foundations (Fitts' Law, Hick-Hyman Law, Norman's Action Cycle)\n", size: 19 }),
-              new TextRun({ text: "• Section 6: Motor Ergonomics, Gorilla Arm Mitigation & Midas Touch Solution\n", size: 19 }),
-              new TextRun({ text: "• Section 7: Dialogue Model, Finite State Machine & Vision Pipeline\n", size: 19 }),
-              new TextRun({ text: "• Section 8: Nielsen's Ten Usability Heuristics Compliance Audit\n", size: 19 }),
-              new TextRun({ text: "• Section 9: Empirical Usability Evaluation, Benchmark Results & SUS 10-Item Breakdown\n", size: 19 }),
-              new TextRun({ text: "• Section 10: Discussion, System Limitations & Future Work\n", size: 19 }),
-              new TextRun({ text: "• Section 11: Conclusion\n", size: 19 }),
-              new TextRun({ text: "• Section 12: Academic References & Appendix (Team Contributions Matrix)", size: 19 }),
+              new TextRun({ text: "• Section 4: User Analysis, Personas & User Journey Mapping\n", size: 19 }),
+              new TextRun({ text: "• Section 5: Hierarchical Task Analysis (HTA) & Error Recovery Trees\n", size: 19 }),
+              new TextRun({ text: "• Section 6: Theoretical HCI Foundations (Fitts' Law, Hick-Hyman Law, Cognitive Load)\n", size: 19 }),
+              new TextRun({ text: "• Section 7: Motor Ergonomics, Gorilla Arm Mitigation & Norman's Action Cycle\n", size: 19 }),
+              new TextRun({ text: "• Section 8: Dialogue Model, Finite State Machine & Vision Pipeline\n", size: 19 }),
+              new TextRun({ text: "• Section 9: Nielsen's Ten Usability Heuristics & Shneiderman's 8 Golden Rules\n", size: 19 }),
+              new TextRun({ text: "• Section 10: Empirical Usability Evaluation, Benchmark Results & SUS 10-Item Breakdown\n", size: 19 }),
+              new TextRun({ text: "• Section 11: Qualitative Findings, Camera Optical Envelope & Limitations\n", size: 19 }),
+              new TextRun({ text: "• Section 12: Discussion, Future Directions & Conclusion\n", size: 19 }),
+              new TextRun({ text: "• Section 13: Academic References\n", size: 19 }),
+              new TextRun({ text: "• Appendices A to D (Team Matrix, Usability Script, SUS Formula, System Architecture)", size: 19 }),
             ],
           }),
 
           // 3. Introduction
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "3. Introduction & Problem Statement", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "3. Introduction, Problem Domain & Modality Benchmarking", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 80, after: 80 },
+            spacing: { before: 70, after: 70 },
             children: [
               new TextRun({ text: "3.1 Real-World Presentation Obstacles\n", bold: true, size: 21, color: secondaryColor }),
               new TextRun({
-                text: "When presenting to an audience, maintaining eye contact, moving naturally, and speaking smoothly are critical. However, existing presentation tools create real physical and mental obstacles:\n",
+                text: "When delivering a presentation, a speaker needs to focus on communicating with the audience. Existing control tools create clear problems:\n",
                 size: 20,
               }),
               new TextRun({ text: "1. Podium Lock (Tethering): ", bold: true, size: 20 }),
@@ -270,7 +272,7 @@ async function generateCompleteAcademicDocxReport() {
 
           // Table 1
           new Paragraph({
-            spacing: { before: 120, after: 80 },
+            spacing: { before: 100, after: 70 },
             children: [
               new TextRun({ text: "Table 1: Comprehensive Comparison of Presentation Control Modalities", bold: true, size: 19 }),
             ],
@@ -330,26 +332,82 @@ async function generateCompleteAcademicDocxReport() {
             ],
           }),
 
-          // 4. Task Context & HTA
+          // 4. User Analysis & Personas
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "4. Task Context, User Analysis & Hierarchical Task Analysis", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "4. User Analysis, Personas & User Journey Mapping", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 80, after: 80 },
+            spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "4.1 Stakeholder Profiles\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({ text: "• Primary Presenter: ", bold: true, size: 20 }),
-              new TextRun({ text: "Needs effortless slide turning with 100% trigger reliability and zero accidental clicks while speaking.\n", size: 20 }),
-              new TextRun({ text: "• Audience: ", bold: true, size: 20 }),
-              new TextRun({ text: "Needs uninterrupted presentation flow without distracting technical pauses, misclicks, or speaker fumbling.\n", size: 20 }),
-              new TextRun({ text: "• Event Host / Organizer: ", bold: true, size: 20 }),
-              new TextRun({ text: "Needs zero software installation delays on guest speaker laptops.\n\n", size: 20 }),
-              new TextRun({ text: "4.2 Hierarchical Task Analysis (HTA)\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({ text: "The presentation delivery workflow is formally decomposed into hierarchical tasks and operational plans:\n", size: 20 }),
+              new TextRun({ text: "4.1 User Personas\n", bold: true, size: 21, color: secondaryColor }),
+              new TextRun({ text: "• Persona 1: Prof. Samuel (University Lecturer, 52): ", bold: true, size: 20 }),
+              new TextRun({ text: "Teaches 200+ students in large lecture halls. Constantly paces the stage. Hates being stuck behind the podium laptop. Needs a reliable way to turn slides without holding a remote while writing on whiteboards.\n", size: 20 }),
+              new TextRun({ text: "• Persona 2: Sarah Lin (Lead Software Architect, 34): ", bold: true, size: 20 }),
+              new TextRun({ text: "Presents technical system designs at developer summits. Delivers fast-paced slide walkthroughs and live architecture diagrams. Needs instant slide switching (0ms lag) and a continuous laser pointer to highlight code blocks.\n", size: 20 }),
+              new TextRun({ text: "• Persona 3: Marcus Vance (Corporate Product Director, 41): ", bold: true, size: 20 }),
+              new TextRun({ text: "Pitches high-stakes product proposals to executive boards. Talks expressively with his hands. Suffered from embarrassing accidental slide changes with older gesture tools. Requires 100% false-positive immunity.\n\n", size: 20 }),
+              new TextRun({ text: "4.2 User Journey Mapping\n", bold: true, size: 21, color: secondaryColor }),
+            ],
+          }),
+
+          // Table 2: User Journey
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            borders: tableBorder,
+            rows: [
+              new TableRow({
+                children: [
+                  createCell("Journey Phase", true, 25),
+                  createCell("Traditional Hardware Remote Experience", true, 38),
+                  createCell("AirSlide Touch-Free Experience", true, 37),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("1. Setup", false, 25, true),
+                  createCell("Search for USB dongle; check batteries; test pairing.", false, 38),
+                  createCell("Open web URL; grant camera permission; ready in 5s.", false, 37),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("2. Presentation", false, 25, true),
+                  createCell("Hold remote in hand; fumble for forward button.", false, 38),
+                  createCell("Flash Peace Sign briefly; keep hands completely free.", false, 37),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("3. Emphasis", false, 25, true),
+                  createCell("Struggle with dim hardware laser dot on screens.", false, 38),
+                  createCell("Hold Open Palm; crisp virtual laser spotlight appears.", false, 37),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("4. Q&A Session", false, 25, true),
+                  createCell("Click back repeatedly; remote gets placed down and lost.", false, 38),
+                  createCell("Show Point Up gesture to step back instantly.", false, 37),
+                ],
+              }),
+            ],
+          }),
+
+          // 5. HTA
+          new Paragraph({
+            heading: HeadingLevel.HEADING_1,
+            spacing: { before: 200, after: 80 },
+            children: [
+              new TextRun({ text: "5. Hierarchical Task Analysis (HTA) & Error Recovery", bold: true, size: 24, color: primaryColor }),
+            ],
+          }),
+          new Paragraph({
+            spacing: { before: 70, after: 70 },
+            children: [
               new TextRun({ text: "• Task 0: Deliver Presentation: ", bold: true, size: 20 }),
               new TextRun({ text: "Plan 0: Execute 1 (Setup), then repeatedly execute 2 (Slide Navigation) and optionally 3 (Laser Pointer) until conclusion. If an error occurs, execute 4 (Recovery).\n", size: 20 }),
               new TextRun({ text: "• Task 1: System Setup: ", bold: true, size: 20 }),
@@ -363,76 +421,58 @@ async function generateCompleteAcademicDocxReport() {
             ],
           }),
 
-          // 5. Theoretical HCI Foundations
+          // 6. Theoretical HCI Foundations
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "5. Theoretical HCI Foundations & Mathematical Derivations", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "6. Theoretical HCI Foundations & Mathematical Derivations", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 80, after: 80 },
+            spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "5.1 Fitts' Law in Free-Space Mid-Air Interaction\n", bold: true, size: 21, color: secondaryColor }),
+              new TextRun({ text: "6.1 Fitts' Law in Free-Space Mid-Air Interaction\n", bold: true, size: 21, color: secondaryColor }),
+              new TextRun({ text: "Fitts' Law: MT = a + b · log₂(2D / W) = a + b · ID\n", bold: true, size: 20, color: primaryColor }),
               new TextRun({
-                text: "Fitts' Law (Fitts, 1954) models the movement time (MT) required to rapidly acquire a target area of width W at distance D:\n",
+                text: "• AirSlide Dimension Reduction: For slide switching, AirSlide eliminates 2D spatial coordinate targeting completely. The entire camera view acts as the detection zone. Because target width approaches infinity (W → ∞), the Index of Difficulty collapses to zero (ID → 0). Movement time is bounded strictly by the neuromuscular finger articulation time (~180ms).\n• Laser Pointing Stabilization: In laser pointer mode (Open Palm), AirSlide applies a velocity-scaled Exponential Moving Average (EMA) filter: S_t = α · Y_t + (1 - α) · S_{t-1}. Small tremors are damped at low velocities, while rapid arm movements experience zero lag, optimizing Fitts' Law pointing throughput (TP = ID / MT).\n\n",
                 size: 20,
               }),
-              new TextRun({ text: "MT = a + b · log₂(2D / W) = a + b · ID\n", bold: true, size: 21, color: primaryColor }),
+              new TextRun({ text: "6.2 Hick-Hyman Law & Cognitive Decision Latency\n", bold: true, size: 21, color: secondaryColor }),
+              new TextRun({ text: "Hick's Law: RT = b · log₂(n + 1)\n", bold: true, size: 20, color: primaryColor }),
               new TextRun({
-                text: "In traditional mid-air gesture interfaces, forcing a presenter to steer their hand to a small virtual on-screen button is clumsy and tiring because target width W is small while distance D is large, resulting in a high Index of Difficulty (ID > 4.5 bits) and severe targeting instability due to physiological hand tremor.\n\n• AirSlide Dimension Reduction: For slide switching, AirSlide eliminates 2D spatial coordinate targeting completely. The entire camera view acts as the detection zone. Because target width approaches infinity (W → ∞), the Index of Difficulty collapses to zero (ID → 0). Movement time is bounded strictly by the neuromuscular finger articulation time (~180ms). Presenters can show the gesture anywhere in frame without looking at where their hand is aimed.\n• Laser Pointing Stabilization: In laser pointer mode (Open Palm), where continuous 2D spatial pointing is required, AirSlide applies a velocity-scaled Exponential Moving Average (EMA) filter: S_t = α · Y_t + (1 - α) · S_{t-1}. Small tremors are damped at low velocities, while rapid arm movements experience zero lag, optimizing Fitts' Law pointing throughput (TP = ID / MT).\n\n",
-                size: 20,
-              }),
-              new TextRun({ text: "5.2 Hick-Hyman Law & Cognitive Decision Latency\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({
-                text: "The Hick-Hyman Law (Hick, 1952; Hyman, 1953) dictates that the cognitive reaction time (RT) required for a user to choose among n possible alternatives increases logarithmically:\n",
-                size: 20,
-              }),
-              new TextRun({ text: "RT = b · log₂(n + 1)\n", bold: true, size: 21, color: primaryColor }),
-              new TextRun({
-                text: "During active public speaking, the presenter's working memory is almost fully occupied by verbal speech generation. If a gesture system presents a large vocabulary of 15–20 complex gestures, Hick's Law predicts a dramatic increase in cognitive decision latency (RT > 450ms), causing awkward verbal pauses and high gesture recall error rates.\n• AirSlide 4-Gesture Vocabulary: AirSlide restricts the active gesture set to exactly n = 4 mutually orthogonal postures (Entropy H ≈ 2.32 bits): (1) Peace Sign for Next, (2) Point Up for Previous, (3) Open Palm for Laser, and (4) Closed Fist for Pause.\n• Natural Ordinal Mapping: Because finger counts mirror natural ordinal logic (1 finger = step back/1st, 2 fingers = step forward/2nd, 5 fingers = full spotlight, 0 fingers = close/stop), presenter reaction time RT is measured empirically at under 190ms, enabling subconscious execution without speech hesitation.",
+                text: "AirSlide restricts the active gesture set to exactly n = 4 mutually orthogonal postures (Entropy H ≈ 2.32 bits): (1) Peace Sign for Next, (2) Point Up for Previous, (3) Open Palm for Laser, and (4) Closed Fist for Pause. Because finger counts mirror natural ordinal logic (1 finger = step back/1st, 2 fingers = step forward/2nd, 5 fingers = full spotlight, 0 fingers = close/stop), presenter reaction time RT is measured empirically at under 190ms, enabling subconscious execution without speech hesitation.",
                 size: 20,
               }),
             ],
           }),
 
-          // 6. Ergonomics & Physical Factors
+          // 7. Motor Ergonomics & Norman's Model
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "6. Motor Ergonomics & Physical Human Factors", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "7. Motor Ergonomics & Norman's Action Cycle", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 80, after: 80 },
+            spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "6.1 Solving 'Gorilla Arm' Fatigue Syndrome\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({
-                text: "A well-documented failure mode of free-space Natural User Interfaces (NUI) is 'Gorilla Arm' syndrome—acute muscular fatigue in the anterior deltoid and upper trapezius caused by holding the arm extended in mid-air for prolonged periods. AirSlide eliminates this through a micro-gestural interaction model: presenters only raise their hand for a brief half-second flash (<350ms) to trigger a slide turn, then immediately drop their arm back down to a relaxed resting position.\n\n",
-                size: 20,
-              }),
-              new TextRun({ text: "6.2 Solving the 'Midas Touch' Problem\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({
-                text: "When a presenter lowers their arm back to rest, the downward motion and changing finger positions could easily be misclassified as secondary gesture commands. AirSlide implements a 2.0-second post-trigger refractory lockout state machine: right after a slide change executes, the gesture classifier freezes all discrete triggers for 2.0 seconds while the arm descends, ensuring 100% false-positive immunity during physical arm relaxation.",
-                size: 20,
-              }),
+              new TextRun({ text: "• Gorilla Arm Fatigue Elimination: ", bold: true, size: 20 }),
+              new TextRun({ text: "Presenters only raise their hand for a brief half-second flash (<350ms) to trigger a slide turn, then immediately drop their arm back down to rest.\n", size: 20 }),
+              new TextRun({ text: "• Midas Touch Solution: ", bold: true, size: 20 }),
+              new TextRun({ text: "AirSlide enforces a 2.0-second post-trigger refractory lockout state machine: right after a slide change executes, the classifier ignores all movements while the arm returns to rest.\n", size: 20 }),
+              new TextRun({ text: "• Norman's Action Cycle: ", bold: true, size: 20 }),
+              new TextRun({ text: "Gulf of Execution is bridged by intuitive finger counting; Gulf of Evaluation is bridged by real-time skeletal feedback, instant 0ms slide animations, and a radial cooldown ring.", size: 20 }),
             ],
           }),
 
-          // 7. Dialogue Model & FSM
+          // 8. Dialogue Model & FSM
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "7. Dialogue Model, Finite State Machine & Vision Pipeline", bold: true, size: 24, color: primaryColor }),
-            ],
-          }),
-          new Paragraph({
-            spacing: { before: 80, after: 80 },
-            children: [
-              new TextRun({ text: "Table 2: Finite State Machine (FSM) Transition Logic", bold: true, size: 19 }),
+              new TextRun({ text: "8. Dialogue Model, Finite State Machine & Vision Pipeline", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Table({
@@ -490,12 +530,12 @@ async function generateCompleteAcademicDocxReport() {
             ],
           }),
 
-          // 8. Nielsen's Heuristics
+          // 9. Nielsen's Heuristics
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "8. Nielsen's Ten Usability Heuristics Compliance Audit", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "9. Nielsen's Ten Usability Heuristics Compliance Audit", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Table({
@@ -582,22 +622,12 @@ async function generateCompleteAcademicDocxReport() {
             ],
           }),
 
-          // 9. Empirical Usability Evaluation
+          // 10. Usability Testing & SUS
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "9. Empirical Usability Evaluation & Experimental Results", bold: true, size: 24, color: primaryColor }),
-            ],
-          }),
-          new Paragraph({
-            spacing: { before: 80, after: 80 },
-            children: [
-              new TextRun({
-                text: "A formal within-subjects usability evaluation was conducted with N = 12 participants (4 university lecturers, 4 corporate project managers, and 4 software engineering students; 7 male, 5 female; aged 21–46, mean = 27.4 years). Each participant completed three realistic presentation scenarios: (1) Standard 10-slide academic lecture walkthrough, (2) Fast-paced interactive Q&A slide navigation, and (3) Continuous laser spotlight demonstration. Telemetry data was recorded across 850 total gestures.\n\n",
-                size: 20,
-              }),
-              new TextRun({ text: "Table 3: Quantitative Usability Benchmarks & Performance Metrics", bold: true, size: 19 }),
+              new TextRun({ text: "10. Empirical Usability Evaluation & Benchmark Results", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Table({
@@ -673,9 +703,9 @@ async function generateCompleteAcademicDocxReport() {
 
           // SUS Breakdown Table
           new Paragraph({
-            spacing: { before: 140, after: 80 },
+            spacing: { before: 120, after: 70 },
             children: [
-              new TextRun({ text: "Table 4: System Usability Scale (SUS) 10-Item Breakdown", bold: true, size: 19 }),
+              new TextRun({ text: "Table 5: System Usability Scale (SUS) 10-Item Breakdown", bold: true, size: 19 }),
             ],
           }),
           new Table({
@@ -762,53 +792,45 @@ async function generateCompleteAcademicDocxReport() {
             ],
           }),
 
-          // 10. Discussion & Conclusion
+          // 11. Discussion, References & Appendices
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "10. Discussion, Limitations & Future Work", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "11. Discussion, Limitations & Future Work", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
-            spacing: { before: 80, after: 80 },
+            spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "10.1 Technical Limitations & Edge Cases\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({ text: "• Low-Light Environments: Webcam sensors in dark lecture halls introduce grain that reduces MediaPipe joint confidence. The system handles this with an on-screen lighting warning banner.\n• Extreme Camera Angles: Presenters standing more than 60 degrees off-axis experience foreshortening. The ideal capture zone is within ±45 degrees.\n\n", size: 20 }),
-              new TextRun({ text: "10.2 Future Research Trajectories\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({ text: "• Multi-Presenter Handover: Tracking unique hand IDs to allow co-presenters to pass presentation control seamlessly.\n• Multimodal Voice + Gesture Fusion: Combining whisper speech keywords with micro-gestures for dual-confirmation presentation control.\n\n", size: 20 }),
-              new TextRun({ text: "11. Conclusion\n", bold: true, size: 24, color: primaryColor }),
-              new TextRun({ text: "AirSlide demonstrates that camera-based Natural User Interfaces can achieve industrial-grade reliability and delightful usability by adhering strictly to fundamental HCI and cognitive human factors principles. By replacing dynamic swipe trajectories with static finger counting poses and enforcing a 2.0-second post-trigger refractory lockout, AirSlide eliminates the Midas Touch dilemma and Gorilla Arm fatigue. The resulting system liberates presenters from physical hardware tethers and provides a dependable, private, and universal touch-free presentation experience.", size: 20 }),
-            ],
-          }),
-
-          // 12. References & Appendix
-          new Paragraph({
-            heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
-            children: [
-              new TextRun({ text: "12. Academic References", bold: true, size: 24, color: primaryColor }),
-            ],
-          }),
-          new Paragraph({
-            spacing: { before: 60, after: 60 },
-            children: [
-              new TextRun({ text: "1. Fitts, P. M. (1954). The information capacity of the human motor system in controlling the amplitude of movement. Journal of Experimental Psychology, 47(6), 381–391.\n", size: 18 }),
-              new TextRun({ text: "2. Hick, W. E. (1952). On the rate of gain of information. Quarterly Journal of Experimental Psychology, 4(1), 11–26.\n", size: 18 }),
-              new TextRun({ text: "3. Norman, D. A. (2013). The Design of Everyday Things: Revised and Expanded Edition. Basic Books, New York.\n", size: 18 }),
-              new TextRun({ text: "4. Nielsen, J. (1994). Usability Engineering. Morgan Kaufmann Publishers, San Francisco.\n", size: 18 }),
-              new TextRun({ text: "5. Shneiderman, B., et al. (2016). Designing the User Interface: Strategies for Effective HCI (6th ed.). Pearson.\n", size: 18 }),
-              new TextRun({ text: "6. Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. Cognitive Science, 12(2), 257–285.\n", size: 18 }),
-              new TextRun({ text: "7. Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. In Usability Evaluation in Industry (pp. 189–194). Taylor & Francis.\n", size: 18 }),
-              new TextRun({ text: "8. Lugaresi, C., et al. (2019). MediaPipe: A Framework for Building Perception Pipelines. arXiv:1906.08172.\n", size: 18 }),
-              new TextRun({ text: "9. Wigdor, D., & Wixon, D. (2011). Brave NUI World: Designing Natural User Interfaces. Morgan Kaufmann.\n", size: 18 }),
-              new TextRun({ text: "10. Hyman, R. (1953). Stimulus information as a determinant of reaction time. Journal of Experimental Psychology, 45(3), 188–196.", size: 18 }),
+              new TextRun({ text: "• Low-Light Environments: ", bold: true, size: 20 }),
+              new TextRun({ text: "Webcam sensors in dark lecture halls introduce grain that reduces MediaPipe joint confidence. The system handles this with an on-screen lighting warning banner.\n", size: 20 }),
+              new TextRun({ text: "• Extreme Camera Angles: ", bold: true, size: 20 }),
+              new TextRun({ text: "Presenters standing more than 60 degrees off-axis experience foreshortening. The ideal capture zone is within ±45 degrees.\n", size: 20 }),
+              new TextRun({ text: "• Future Trajectories: ", bold: true, size: 20 }),
+              new TextRun({ text: "Multi-presenter handover recognition, subtle eye-gaze tracking, and multimodal speech-gesture fusion.", size: 20 }),
             ],
           }),
 
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 240, after: 100 },
+            spacing: { before: 200, after: 80 },
+            children: [
+              new TextRun({ text: "12. Conclusion & References", bold: true, size: 24, color: primaryColor }),
+            ],
+          }),
+          new Paragraph({
+            spacing: { before: 50, after: 50 },
+            children: [
+              new TextRun({ text: "AirSlide demonstrates that camera-based Natural User Interfaces can achieve industrial-grade reliability and delightful usability by adhering strictly to fundamental HCI and cognitive human factors principles. By replacing dynamic swipe trajectories with static finger counting poses and enforcing a 2.0-second post-trigger refractory lockout, AirSlide eliminates the Midas Touch dilemma and Gorilla Arm fatigue. The resulting system liberates presenters from physical hardware tethers and provides a dependable, private, and universal touch-free presentation experience.\n\n", size: 19 }),
+              new TextRun({ text: "References:\n", bold: true, size: 19 }),
+              new TextRun({ text: "1. Fitts, P. M. (1954). J. Exp. Psychol., 47(6), 381-391.\n2. Hick, W. E. (1952). Q. J. Exp. Psychol., 4(1), 11-26.\n3. Norman, D. A. (2013). The Design of Everyday Things. Basic Books.\n4. Nielsen, J. (1994). Usability Engineering. Morgan Kaufmann.\n5. Shneiderman, B., et al. (2016). Designing the User Interface (6th ed.). Pearson.\n6. Sweller, J. (1988). Cognitive Science, 12(2), 257-285.\n7. Brooke, J. (1996). SUS Scale. Usability Evaluation in Industry.\n8. Lugaresi, C., et al. (2019). MediaPipe. arXiv:1906.08172.", size: 17 }),
+            ],
+          }),
+
+          new Paragraph({
+            heading: HeadingLevel.HEADING_1,
+            spacing: { before: 200, after: 80 },
             children: [
               new TextRun({ text: "Appendix A: Team Contributions Matrix", bold: true, size: 24, color: primaryColor }),
             ],
@@ -821,7 +843,7 @@ async function generateCompleteAcademicDocxReport() {
                 children: [
                   createCell("Team Member", true, 28),
                   createCell("Role & Core Responsibilities", true, 36),
-                  createCell("Key Contributions", true, 36),
+                  createCell("Key Deliverables", true, 36),
                 ],
               }),
               new TableRow({
@@ -868,7 +890,7 @@ async function generateCompleteAcademicDocxReport() {
   fs.writeFileSync(rootDocx, buffer);
 }
 
-generateCompleteAcademicDocxReport().catch((err) => {
+generateComplete12PageDocxReport().catch((err) => {
   console.error("Error generating DOCX report:", err);
   process.exit(1);
 });
