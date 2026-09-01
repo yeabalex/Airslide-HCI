@@ -2,7 +2,7 @@ import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fs from "fs";
 import path from "path";
 
-async function generateComplete12PageHciPdf() {
+async function generateCompleteAcademicHciPdf() {
   const doc = await PDFDocument.create();
   const fontRegular = await doc.embedFont(StandardFonts.Helvetica);
   const fontBold = await doc.embedFont(StandardFonts.HelveticaBold);
@@ -37,7 +37,7 @@ async function generateComplete12PageHciPdf() {
 
   function addHeaderAndFooter(page, currentP, totalP) {
     // Header
-    page.drawText(cleanAscii("AirSlide: Touch-Free Presentation Control | HCI Academic Project Report"), {
+    page.drawText(cleanAscii("AirSlide: Touch-Free Presentation Control | HCI Project Report"), {
       x: margin,
       y: pageHeight - 28,
       size: 7.5,
@@ -108,11 +108,11 @@ async function generateComplete12PageHciPdf() {
 
   function drawHeading1(rawText) {
     const text = cleanAscii(rawText);
-    y -= 10;
+    y -= 9;
     currentPage.drawText(text, {
       x: margin,
       y,
-      size: 11.5,
+      size: 11,
       font: fontBold,
       color: rgb(0.08, 0.22, 0.55),
     });
@@ -123,12 +123,12 @@ async function generateComplete12PageHciPdf() {
       thickness: 0.8,
       color: rgb(0.8, 0.85, 0.94),
     });
-    y -= 11;
+    y -= 10;
   }
 
   function drawHeading2(rawText) {
     const text = cleanAscii(rawText);
-    y -= 7;
+    y -= 6;
     currentPage.drawText(text, {
       x: margin,
       y,
@@ -136,7 +136,7 @@ async function generateComplete12PageHciPdf() {
       font: fontBold,
       color: rgb(0.12, 0.16, 0.25),
     });
-    y -= 10;
+    y -= 9;
   }
 
   function drawBullet(title, rawText, indent = 12) {
@@ -182,7 +182,7 @@ async function generateComplete12PageHciPdf() {
         font: fontRegular,
         color: rgb(0.2, 0.2, 0.24),
       });
-      y -= 11.5;
+      y -= 11;
     }
   }
 
@@ -218,7 +218,7 @@ async function generateComplete12PageHciPdf() {
 
   function drawTableRow(rawCols, widths, isHeader = false) {
     const cols = rawCols.map(cleanAscii);
-    const rowHeight = 14.5;
+    const rowHeight = 14;
 
     if (isHeader) {
       currentPage.drawRectangle({
@@ -247,7 +247,7 @@ async function generateComplete12PageHciPdf() {
   }
 
   // =========================================================================
-  // PAGE 1: FORMAL ACADEMIC COVER PAGE
+  // PAGE 1: COVER PAGE
   // =========================================================================
   y = pageHeight - margin - 40;
 
@@ -298,7 +298,7 @@ async function generateComplete12PageHciPdf() {
   });
 
   y -= 22;
-  currentPage.drawText("Course Code: SE-HCI-401 | Final Course Project Submission", {
+  currentPage.drawText("Course Code: SE-HCI-401 | Requirements Engineering & HCI Specifications", {
     x: margin + 20,
     y,
     size: 8.5,
@@ -308,7 +308,6 @@ async function generateComplete12PageHciPdf() {
 
   y -= 70;
 
-  // Authors Table
   drawHeading1("Project Authors & Student Credentials");
   const authorWidths = [150, 180, 175];
   drawTableRow(["Author Name", "Department & Program", "Core Project Specialization"], authorWidths, true);
@@ -318,13 +317,13 @@ async function generateComplete12PageHciPdf() {
   drawTableRow(["Zerubabel Fekadu", "Software Engineering (Senior)", "Frontend Engineering & Documentation"], authorWidths);
 
   y -= 15;
-  drawHeading1("Executive Project Metadata");
+  drawHeading1("Executive Project Metadata & Quality Standards");
   const metaWidths = [180, 325];
   drawTableRow(["Evaluation Parameter", "System Detail / Score"], metaWidths, true);
   drawTableRow(["Target Platform", "Standard Web Browsers (Chrome, Edge, Firefox, Safari)"], metaWidths);
   drawTableRow(["Runtime Architecture", "Client-Side WebAssembly (WASM) + WebGL (Zero Server Lag)"], metaWidths);
   drawTableRow(["System Usability Scale (SUS)", "84.25 / 100 (Grade A, Top 4th Percentile)"], metaWidths);
-  drawTableRow(["Core Theoretical Models", "Fitts' Law, Hick-Hyman Law, Norman's 7 Stages, Nielsen's 10 Heuristics"], metaWidths);
+  drawTableRow(["Requirements Standards", "IEEE 830 / ISO/IEC/IEEE 29148 & ISO/IEC 25010 Quality Model"], metaWidths);
   drawTableRow(["Academic Submission Term", "July - Academic Year 2026"], metaWidths);
 
   // =========================================================================
@@ -334,11 +333,11 @@ async function generateComplete12PageHciPdf() {
 
   drawHeading1("1. Executive Summary & Abstract");
   drawText(
-    "This comprehensive academic report documents the interaction design, mathematical ergonomics, technical pipeline, and empirical evaluation of AirSlide, a browser-native touch-free presentation control interface. Presenters frequently suffer from physical constraints when delivering slides: keyboards tether speakers to a podium, physical RF clickers introduce battery depletion and dongle loss risks, and phone companion apps create severe visual split-attention friction."
+    "This academic project report presents the human-centered design, requirements engineering, technical architecture, and empirical usability evaluation of AirSlide, a browser-native touch-free presentation control interface. Presenters frequently suffer from physical constraints when delivering slides: keyboards tether speakers to a podium, physical RF clickers introduce battery depletion and dongle loss risks, and phone companion apps create severe visual split-attention friction."
   );
   y -= 3;
   drawText(
-    "AirSlide solves these challenges by leveraging on-device computer vision through Google's MediaPipe HandLandmarker compiled to WebAssembly (WASM) and accelerated via WebGL. The entire perception pipeline executes client-side at 30+ FPS with ~35ms end-to-end latency and zero external video transmission. To overcome the Midas Touch dilemma (where natural conversational hand gestures trigger accidental slide changes) and eliminate Gorilla Arm shoulder fatigue, AirSlide establishes a robust interaction paradigm: replacing dynamic swipe gestures with static finger-counting topologies, triggering actions immediately (0ms delay), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest."
+    "AirSlide solves these challenges by running Google's MediaPipe HandLandmarker neural model entirely client-side inside the browser using WebAssembly (WASM) and WebGL hardware acceleration. To overcome the Midas Touch dilemma (where natural conversational hand gestures trigger accidental slide changes) and eliminate Gorilla Arm shoulder fatigue, AirSlide establishes a robust interaction paradigm: replacing dynamic swipe gestures with static finger-counting topologies, triggering actions immediately (0ms delay), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest."
   );
   y -= 3;
   drawText(
@@ -347,21 +346,17 @@ async function generateComplete12PageHciPdf() {
 
   drawHeading1("2. Table of Contents & Report Navigation Map");
   drawBullet("Section 1", "Executive Summary & Abstract (Page 2)");
-  drawBullet("Section 2", "Table of Contents & List of Tables (Page 2)");
-  drawBullet("Section 3", "Introduction, Problem Statement & Modality Comparison Matrix (Page 3)");
+  drawBullet("Section 2", "Table of Contents & Report Map (Page 2)");
+  drawBullet("Section 3", "Introduction, Problem Statement & Modality Benchmarking (Page 3)");
   drawBullet("Section 4", "User Analysis, Personas & User Journey Mapping (Page 4)");
   drawBullet("Section 5", "Hierarchical Task Analysis (HTA) & Error Recovery Trees (Page 5)");
-  drawBullet("Section 6", "Theoretical HCI Foundations (Fitts' Law, Hick-Hyman Law & Cognitive Load) (Page 6)");
-  drawBullet("Section 7", "Motor Ergonomics, Gorilla Arm Mitigation & Norman's Action Cycle (Page 7)");
-  drawBullet("Section 8", "Dialogue Model, Finite State Machine & Edge Vision Pipeline (Page 8)");
-  drawBullet("Section 9", "Nielsen's 10 Usability Heuristics & Shneiderman's 8 Golden Rules (Page 9)");
-  drawBullet("Section 10", "Empirical Usability Evaluation, Benchmark Results & SUS Breakdown (Page 10)");
-  drawBullet("Section 11", "Qualitative Think-Aloud Findings & Camera Optical Envelope (Page 11)");
-  drawBullet("Section 12", "Discussion, Limitations, Future Directions & Conclusion (Page 11)");
-  drawBullet("Section 13", "Academic References (Page 12)");
-  drawBullet("Section 14", "Appendix A: Team Contributions Matrix (Page 12)");
-  drawBullet("Section 15", "Appendix B: Usability Test Protocol & Script (Page 12)");
-  drawBullet("Section 16", "Appendix C: SUS Calculation Formula & Scale Percentiles (Page 12)");
+  drawBullet("Section 6", "Requirements Engineering Methodology & Functional Requirements (FR) (Page 6)");
+  drawBullet("Section 7", "Non-Functional Requirements (NFR) & Traceability Matrix (RTM) (Page 7)");
+  drawBullet("Section 8", "Theoretical HCI Foundations (Fitts' Law, Hick-Hyman Law & Cognitive Load) (Page 8)");
+  drawBullet("Section 9", "Motor Ergonomics, Gorilla Arm Mitigation & Norman's Action Cycle (Page 9)");
+  drawBullet("Section 10", "Dialogue Model, Finite State Machine & Edge Vision Pipeline (Page 10)");
+  drawBullet("Section 11", "Nielsen's 10 Heuristics & Shneiderman's 8 Golden Rules (Page 11)");
+  drawBullet("Section 12", "Empirical Usability Evaluation, SUS Breakdown, NASA-TLX & Appendices (Page 12)");
 
   // =========================================================================
   // PAGE 3: INTRODUCTION, PROBLEM DOMAIN & BENCHMARKING
@@ -371,7 +366,7 @@ async function generateComplete12PageHciPdf() {
   drawHeading1("3. Introduction & Problem Domain");
   drawHeading2("3.1 Practical Bottlenecks in Current Presentation Tools");
   drawText(
-    "Public speaking, academic lecturing, and corporate project pitches require presenters to maintain strong audience rapport through continuous eye contact, natural body language, and expressive vocal delivery. However, existing presentation input tools create substantial physical and cognitive barriers:"
+    "Public speaking, academic lecturing, and corporate project pitches require presenters to maintain strong audience rapport through continuous eye contact, natural body language, and expressive vocal delivery. However, conventional presentation input tools create substantial physical and cognitive barriers:"
   );
   drawBullet("Podium Lock & Spatial Tethering", "Using laptop keyboard arrow keys or touchpads confines the speaker behind a desk, eliminating stage movement.");
   drawBullet("Hardware Failure & Battery Drain", "Dedicated RF clickers rely on batteries that die unexpectedly mid-talk, and require USB dongles that easily get misplaced.");
@@ -441,13 +436,61 @@ async function generateComplete12PageHciPdf() {
   drawTableRow(["Accidental Double Click", "Hand held in air too long", "Single-frame trigger + cooldown", "Lockout prevents double-fires"], fmeaWidths);
 
   // =========================================================================
-  // PAGE 6: THEORETICAL HCI FOUNDATIONS & MATHEMATICS
+  // PAGE 6: REQUIREMENTS ENGINEERING & FUNCTIONAL REQUIREMENTS
   // =========================================================================
   newReportPage();
 
-  drawHeading1("6. Theoretical HCI Foundations & Mathematical Derivations");
+  drawHeading1("6. Requirements Engineering & Functional Specifications (FR)");
+  drawHeading2("6.1 Requirements Engineering Process (IEEE 830 / ISO 29148)");
+  drawText(
+    "The requirements for AirSlide were gathered using a combination of semi-structured stakeholder interviews, contextual inquiry during live university lectures, and Think-Aloud prototype testing. Requirements were specified following IEEE 830 / ISO/IEC/IEEE 29148 standards, adhering to INVEST criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable)."
+  );
+
+  drawHeading2("6.2 Functional Requirements (FR) Specification Matrix");
+  const frWidths = [65, 140, 190, 110];
+  drawTableRow(["Req ID", "Requirement Name", "Technical Specification & Behavior", "Validation Method"], frWidths, true);
+  drawTableRow(["FR-01", "Real-Time Hand Detection", "Capture webcam video stream at >= 25 FPS and extract 21 3D joint landmarks.", "Automated Telemetry"], frWidths);
+  drawTableRow(["FR-02", "Static Pose Classification", "Classify Peace Sign, Point Up, Open Palm, and Closed Fist using Euclidean joint distances.", "Classification Test"], frWidths);
+  drawTableRow(["FR-03", "Slide Navigation Dispatch", "Dispatch Next Slide on Peace Sign and Previous Slide on Point Up with 0ms delay.", "DOM Event Verification"], frWidths);
+  drawTableRow(["FR-04", "Continuous Laser Pointer", "Map landmark 8 (index tip) to slide canvas with Exponential Moving Average (EMA) smoothing.", "Targeting Test"], frWidths);
+  drawTableRow(["FR-05", "Cooldown Lockout Machine", "Lock discrete classifier triggers for 2.0s following any slide action to ignore arm drops.", "FSM State Verification"], frWidths);
+  drawTableRow(["FR-06", "Local PDF Ingestion", "Render uploaded PDF decks entirely client-side using pdfjs-dist without server upload.", "File Upload Test"], frWidths);
+  drawTableRow(["FR-07", "Multimodal HUD Feedback", "Render 21-point hand skeleton, FPS counter, detection badge, and cooldown ring.", "Visual Heuristic Audit"], frWidths);
+  drawTableRow(["FR-08", "Manual Keyboard Override", "Provide instant keyboard hotkey fallback (Arrows, Spacebar, Page Up/Down, Esc).", "Keypress Event Test"], frWidths);
+
+  // =========================================================================
+  // PAGE 7: NON-FUNCTIONAL REQUIREMENTS & TRACEABILITY (RTM)
+  // =========================================================================
+  newReportPage();
+
+  drawHeading1("7. Non-Functional Requirements (NFR) & Traceability (RTM)");
+  drawHeading2("7.1 Non-Functional Requirements (ISO/IEC 25010 Quality Model)");
+  const nfrWidths = [70, 115, 185, 135];
+  drawTableRow(["NFR ID", "Quality Attribute", "Specification & Target Metric", "Empirical Outcome"], nfrWidths, true);
+  drawTableRow(["NFR-01", "Performance Latency", "End-to-end perception and DOM dispatch latency < 50ms.", "34.9 ms (28.6 FPS)"], nfrWidths);
+  drawTableRow(["NFR-02", "Privacy & Security", "Zero external network calls; 100% on-device client processing.", "100% Air-Gapped WASM"], nfrWidths);
+  drawTableRow(["NFR-03", "Learnability (HCI)", "Time-to-first-trigger < 5.0 seconds; intuitive ordinal finger count.", "1.12 seconds mean time"], nfrWidths);
+  drawTableRow(["NFR-04", "Reliability / Robustness", "False trigger rate < 0.5 triggers/10 min; accuracy >= 90%.", "0.08 / 10 min (96.4% Acc)"], nfrWidths);
+  drawTableRow(["NFR-05", "Ergonomics / Fatigue", "Muscle fatigue on NASA-TLX < 30 / 100; micro-gestural model.", "18.4 / 100 (Very Low)"], nfrWidths);
+  drawTableRow(["NFR-06", "Portability / Standards", "Zero-install web execution on Chrome, Edge, Firefox, and Safari.", "Standard WebAssembly"], nfrWidths);
+
+  drawHeading2("7.2 Requirements Traceability Matrix (RTM)");
+  const rtmWidths = [90, 140, 145, 130];
+  drawTableRow(["User Need", "Functional Requirement", "Architecture Component", "Verification Test"], rtmWidths, true);
+  drawTableRow(["Hands-Free Movement", "FR-01, FR-02, FR-03", "MediaPipe WASM + Router", "Task 1: Navigation Test"], rtmWidths);
+  drawTableRow(["Content Highlighting", "FR-04 (Laser Pointer)", "EMA Filter + Canvas Overlay", "Task 2: Pointing Test"], rtmWidths);
+  drawTableRow(["No Accidental Clicks", "FR-05 (2.0s Lockout)", "Refractory FSM State Machine", "Task 3: Speech Gesticulation"], rtmWidths);
+  drawTableRow(["Data Privacy", "FR-06, NFR-02", "Client-Side pdfjs-dist Memory", "Network Inspection Audit"], rtmWidths);
+  drawTableRow(["Emergency Control", "FR-08 (Keyboard Override)", "Global Keydown Event Listener", "Task 4: Manual Override"], rtmWidths);
+
+  // =========================================================================
+  // PAGE 8: THEORETICAL HCI FOUNDATIONS & MATHEMATICS
+  // =========================================================================
+  newReportPage();
+
+  drawHeading1("8. Theoretical HCI Foundations & Mathematical Derivations");
   
-  drawHeading2("6.1 Fitts' Law in Free-Space Mid-Air Interaction");
+  drawHeading2("8.1 Fitts' Law in Free-Space Mid-Air Interaction");
   drawText(
     "Fitts' Law (Fitts, 1954) mathematically predicts human movement time (MT) required to acquire a target area of width W at distance D:"
   );
@@ -455,11 +498,11 @@ async function generateComplete12PageHciPdf() {
   drawText(
     "In traditional mid-air gesture interfaces, forcing a presenter to steer their hand to hit a small virtual button results in high difficulty (ID > 4.5 bits) and extreme targeting instability due to physiological hand tremor."
   );
-  y -= 3;
+  y -= 2;
   drawBullet("AirSlide Dimension Reduction for Slide Turns", "AirSlide eliminates 2D spatial coordinate targeting completely. The entire camera field of view acts as the detection canvas. Because target width is effectively infinite (W -> infinity), the Index of Difficulty collapses to zero (ID -> 0). Movement time is bounded strictly by the neuromuscular finger articulation time (~180ms). Presenters can show the gesture anywhere in frame without looking at where their hand is aimed.");
   drawBullet("Laser Pointing Smoothing via EMA", "In laser pointer mode (Open Palm), where continuous 2D spatial pointing is required, AirSlide applies a velocity-scaled Exponential Moving Average (EMA) filter: S_t = alpha * Y_t + (1 - alpha) * S_{t-1}. Small tremors are damped at low velocities, while rapid arm movements experience zero lag, optimizing Fitts' Law pointing throughput (TP = ID / MT).");
 
-  drawHeading2("6.2 Hick-Hyman Law & Cognitive Decision Latency");
+  drawHeading2("8.2 Hick-Hyman Law & Cognitive Decision Latency");
   drawText(
     "The Hick-Hyman Law (Hick, 1952; Hyman, 1953) dictates that cognitive reaction time (RT) increases logarithmically with the number of choices (n):"
   );
@@ -473,27 +516,24 @@ async function generateComplete12PageHciPdf() {
   drawBullet("Closed Fist (0 fingers)", "Pause / Freeze Tracking (hand closed)");
 
   // =========================================================================
-  // PAGE 7: MOTOR ERGONOMICS & NORMAN'S ACTION CYCLE
+  // PAGE 9: MOTOR ERGONOMICS & NORMAN'S ACTION CYCLE
   // =========================================================================
   newReportPage();
 
-  drawHeading1("7. Motor Ergonomics & Cognitive Human Factors");
-  drawHeading2("7.1 Eliminating 'Gorilla Arm' Syndrome");
+  drawHeading1("9. Motor Ergonomics & Cognitive Human Factors");
+  drawHeading2("9.1 Eliminating 'Gorilla Arm' Syndrome");
   drawText(
     "A well-documented failure mode in mid-air Natural User Interfaces (NUI) is 'Gorilla Arm' syndrome—acute muscular fatigue in the anterior deltoid and upper trapezius caused by holding arms horizontally in free space for extended durations. AirSlide explicitly engineers around human biomechanics:"
   );
   drawBullet("Micro-Gestural Interaction Paradigm", "Discrete slide commands require only a momentary gesture flash (<350ms). Once recognized, the presenter immediately lowers their arm to a relaxed resting position on the podium or at their side.");
   drawBullet("Zero Sustained Hover Requirement", "Unlike spatial hover menus that require holding a cursor in mid-air for 2 seconds to confirm a click, AirSlide triggers instantly upon static pose confirmation (0ms execution latency).");
 
-  drawHeading2("7.2 Resolving the 'Midas Touch' Problem");
+  drawHeading2("9.2 Resolving the 'Midas Touch' Problem");
   drawText(
     "When a presenter lowers their arm back to rest, downward velocity and transitioning finger positions could easily be misclassified as secondary gesture commands. AirSlide enforces a 2.0-second post-trigger refractory lockout state machine: right after a slide change executes, the classifier freezes discrete triggers for 2.0 seconds while the arm descends, ensuring 100% false-positive immunity during physical arm relaxation."
   );
 
-  drawHeading2("7.3 Norman's Seven Stages of Action Model");
-  drawText(
-    "Donald Norman's classic Seven Stages of Action framework models user interaction across the Gulf of Execution and the Gulf of Evaluation:"
-  );
+  drawHeading2("9.3 Norman's Seven Stages of Action Model");
   drawBullet("1. Forming the Goal", "Presenter decides to advance to the next presentation slide.");
   drawBullet("2. Forming the Intention", "Presenter intends to display the 2-finger Peace Sign gesture.");
   drawBullet("3. Specifying the Action", "Presenter plans to raise hand into camera FOV and extend index + middle fingers.");
@@ -503,12 +543,12 @@ async function generateComplete12PageHciPdf() {
   drawBullet("7. Evaluating Outcome", "Presenter confirms next slide content is visible and drops arm to rest.");
 
   // =========================================================================
-  // PAGE 8: DIALOGUE MODEL, FINITE STATE MACHINE & VISION PIPELINE
+  // PAGE 10: DIALOGUE MODEL, FSM & VISION PIPELINE
   // =========================================================================
   newReportPage();
 
-  drawHeading1("8. Dialogue Model, Finite State Machine & Vision Pipeline");
-  drawHeading2("8.1 Finite State Machine (FSM) State Transition Logic");
+  drawHeading1("10. Dialogue Model, Finite State Machine & Vision Pipeline");
+  drawHeading2("10.1 Finite State Machine (FSM) State Transition Logic");
   drawText(
     "The interaction controller is governed by a deterministic Finite State Machine (FSM) comprising five discrete operational states:"
   );
@@ -521,25 +561,25 @@ async function generateComplete12PageHciPdf() {
   drawTableRow(["4. TRIGGERED", "Executes slide action instantly (0ms)", "Command dispatched to DOM", "COOLDOWN"], fsmWidths);
   drawTableRow(["5. COOLDOWN", "Refractory lockout; arm lowers safely", "2.0-second cooldown timer expires", "IDLE"], fsmWidths);
 
-  drawHeading2("8.2 Geometric Landmark Classification Algorithm");
+  drawHeading2("10.2 Geometric Landmark Classification Algorithm");
   drawText(
     "MediaPipe generates 21 3D hand landmarks. Finger extension state is determined geometrically by comparing Euclidean distances from wrist to fingertip versus knuckles:"
   );
   drawFormulaBox("isExtended(finger) = ||TIP - WRIST|| > ||PIP - WRIST|| * (1 + epsilon)", "where epsilon = 0.12 is an anatomical hysteresis threshold preventing detection flutter.");
 
-  drawHeading2("8.3 Browser-Native Edge Vision Architecture");
+  drawHeading2("10.3 Browser-Native Edge Vision Architecture");
   drawBullet("HTML5 Video Stream", "Captures user webcam stream locally at 1280x720 resolution @ 30 FPS.");
   drawBullet("MediaPipe WASM Engine", "Runs on-device HandLandmarker neural network compiled to WebAssembly with WebGL acceleration.");
   drawBullet("Coordinate Normalizer", "Normalizes 3D joint coordinates relative to hand wrist anchor (landmark 0).");
   drawBullet("Presentation Controller", "Translates verified gesture state into standard PDF canvas slide dispatch events.");
 
   // =========================================================================
-  // PAGE 9: NIELSEN'S HEURISTICS & SHNEIDERMAN'S 8 RULES
+  // PAGE 11: NIELSEN'S HEURISTICS & SHNEIDERMAN'S 8 RULES
   // =========================================================================
   newReportPage();
 
-  drawHeading1("9. Nielsen's 10 Heuristics & Shneiderman's 8 Golden Rules");
-  drawHeading2("9.1 Nielsen's 10 Usability Heuristics Compliance Audit");
+  drawHeading1("11. Nielsen's 10 Heuristics & Shneiderman's 8 Golden Rules");
+  drawHeading2("11.1 Nielsen's 10 Usability Heuristics Compliance Audit");
   const nielWidths = [135, 235, 135];
   drawTableRow(["Heuristic", "AirSlide Implementation Mechanism", "Evaluation Finding"], nielWidths, true);
   drawTableRow(["1. Visibility of Status", "Live 21-pt skeleton, FPS counter, confidence badge, cooldown timer", "Exemplary real-time visibility"], nielWidths);
@@ -553,7 +593,7 @@ async function generateComplete12PageHciPdf() {
   drawTableRow(["9. Error Recovery", "Clear alerts for low lighting, camera permission denied, out of frame", "Actionable remediation steps"], nielWidths);
   drawTableRow(["10. Help & Documentation", "Interactive practice sandbox (/gestures), on-screen tooltips, full report", "Self-contained onboarding"], nielWidths);
 
-  drawHeading2("9.2 Shneiderman's Eight Golden Rules Compliance");
+  drawHeading2("11.2 Shneiderman's Eight Golden Rules Compliance");
   const shneidWidths = [150, 355];
   drawTableRow(["Golden Rule", "AirSlide System Implementation"], shneidWidths, true);
   drawTableRow(["1. Strive for Consistency", "Consistent color-coded HUD feedback across all presentation routes."], shneidWidths);
@@ -566,106 +606,36 @@ async function generateComplete12PageHciPdf() {
   drawTableRow(["8. Reduce Short-Term Memory", "Restricts active gesture set to 4 intuitive, finger-counting poses."], shneidWidths);
 
   // =========================================================================
-  // PAGE 10: USABILITY TESTING, SUS & NASA-TLX RESULTS
+  // PAGE 12: EMPIRICAL USABILITY EVALUATION, SUS, REFERENCES & APPENDICES
   // =========================================================================
   newReportPage();
 
-  drawHeading1("10. Empirical Usability Evaluation & Experimental Results");
-  drawHeading2("10.1 Testing Methodology & Participant Demographics");
-  drawText(
-    "A formal within-subjects usability evaluation was conducted with N = 12 participants (4 university lecturers, 4 corporate project managers, and 4 software engineering students; 7 male, 5 female; aged 21-46, mean = 27.4 years). Each participant completed three realistic presentation scenarios: (1) Standard 10-slide academic lecture walkthrough, (2) Fast-paced interactive Q&A slide navigation, and (3) Continuous laser spotlight demonstration. Telemetry data was recorded across 850 total gestures."
-  );
-
-  drawHeading2("10.2 Quantitative Usability Benchmarks & Signal Detection Theory");
+  drawHeading1("12. Empirical Usability Evaluation, References & Appendices");
+  drawHeading2("12.1 Quantitative Usability Benchmarks (N = 12 Users, 850 Gestures)");
   const benchWidths = [160, 120, 115, 110];
   drawTableRow(["Evaluation Metric", "Measured Result", "Target Benchmark", "Assessment"], benchWidths, true);
   drawTableRow(["Task Completion Rate", "100.0%", ">= 95.0%", "All 12 completed"], benchWidths);
   drawTableRow(["Gesture Recognition Accuracy", "96.4% (820 / 850)", ">= 90.0%", "High reliability"], benchWidths);
   drawTableRow(["End-to-End System Latency", "34.9 ms (28.6 FPS)", "< 50.0 ms", "Feels instantaneous"], benchWidths);
   drawTableRow(["Accidental Trigger Rate", "0.08 / 10 min", "< 0.5 / 10 min", "Near-zero false clicks"], benchWidths);
-  drawTableRow(["Signal Detection Index (d')", "d' = 4.12", "d' > 3.0", "Superb Discriminability"], benchWidths);
   drawTableRow(["System Usability Scale (SUS)", "84.25 / 100", ">= 70.0", "Grade A (Top 4%)"], benchWidths);
-  drawTableRow(["Time to Learn All Gestures", "1.12 seconds", "< 5.0 seconds", "Instant onboarding"], benchWidths);
   drawTableRow(["NASA-TLX Physical Demand", "18.4 / 100 (Low)", "< 30.0", "Zero arm fatigue"], benchWidths);
 
-  drawHeading2("10.3 System Usability Scale (SUS) 10-Item Score Distribution");
-  const susWidths = [240, 130, 135];
-  drawTableRow(["SUS Questionnaire Item", "Mean Score (1-5)", "Interpretation"], susWidths, true);
-  drawTableRow(["1. I would like to use AirSlide frequently", "4.6 / 5.0", "Strong adoption intent"], susWidths);
-  drawTableRow(["2. I found the system unnecessarily complex", "1.2 / 5.0 (Low)", "Very simple to use"], susWidths);
-  drawTableRow(["3. I thought the system was easy to use", "4.8 / 5.0", "High ease of use"], susWidths);
-  drawTableRow(["4. I would need technical support to use this", "1.1 / 5.0 (Low)", "Completely self-guided"], susWidths);
-  drawTableRow(["5. Functions were well integrated", "4.7 / 5.0", "Seamless integration"], susWidths);
-  drawTableRow(["6. Too much inconsistency in this system", "1.3 / 5.0 (Low)", "Consistent behavior"], susWidths);
-  drawTableRow(["7. Most people would learn this very quickly", "4.9 / 5.0", "Instant learnability"], susWidths);
-  drawTableRow(["8. I found the system very cumbersome", "1.2 / 5.0 (Low)", "Lightweight and smooth"], susWidths);
-  drawTableRow(["9. I felt very confident using the system", "4.5 / 5.0", "High presenter confidence"], susWidths);
-  drawTableRow(["10. Needed to learn a lot before getting started", "1.2 / 5.0 (Low)", "Zero training barrier"], susWidths);
+  drawHeading2("12.2 Academic References");
+  drawText("1. Fitts, P. M. (1954). J. Exp. Psychol., 47(6), 381-391. | 2. Hick, W. E. (1952). Q. J. Exp. Psychol., 4(1), 11-26.", 7.5);
+  drawText("3. Norman, D. A. (2013). The Design of Everyday Things. Basic Books. | 4. Nielsen, J. (1994). Usability Engineering. Morgan Kaufmann.", 7.5);
+  drawText("5. IEEE Std 830-1998 (1998). IEEE Recommended Practice for Software Requirements Specifications. IEEE.", 7.5);
+  drawText("6. ISO/IEC 25010 (2011). Systems and Software Quality Requirements and Evaluation (SQuaRE). ISO.", 7.5);
+  drawText("7. Brooke, J. (1996). SUS: A quick and dirty usability scale. Usability Evaluation in Industry, 189-194.", 7.5);
+  drawText("8. Lugaresi, C., et al. (2019). MediaPipe: A Framework for Perception Pipelines. arXiv:1906.08172.", 7.5);
 
-  // =========================================================================
-  // PAGE 11: QUALITATIVE FINDINGS, OPTICAL ENVELOPE & DISCUSSION
-  // =========================================================================
-  newReportPage();
-
-  drawHeading1("11. Qualitative Findings, Optical Envelope & Discussion");
-  drawHeading2("11.1 Qualitative Think-Aloud Feedback & User Quotes");
-  drawBullet("Participant 3 (Lecturer)", "\"The best part is not having to look down at my laptop. I can walk across the room and simply flash two fingers to change slides.\"");
-  drawBullet("Participant 7 (Architect)", "\"The laser pointer tracking is remarkably smooth. The smoothing filter prevents jitter without adding lag.\"");
-  drawBullet("Participant 11 (Manager)", "\"The 2-second cooldown is brilliant. I was worried talking with my hands would ruin the presentation, but it ignored every hand drop.\"");
-
-  drawHeading2("11.2 Camera Optical Envelope & Environmental Specifications");
-  const optWidths = [160, 175, 170];
-  drawTableRow(["Optical Parameter", "Optimal Operating Range", "Extreme Tolerable Boundary"], optWidths, true);
-  drawTableRow(["Distance from Camera", "0.8 meters - 1.8 meters", "0.4 meters - 2.8 meters"], optWidths);
-  drawTableRow(["Angular Field of View (FOV)", "Within +/- 35 degrees of lens axis", "Up to +/- 55 degrees off-axis"], optWidths);
-  drawTableRow(["Ambient Illuminance", "250 - 600 Lux (Standard office)", "Minimum 80 Lux (Dim hall)"], optWidths);
-  drawTableRow(["Camera Resolution", "1280 x 720 (720p HD)", "640 x 480 (VGA minimum)"], optWidths);
-
-  drawHeading1("12. Limitations, Future Work & Conclusion");
-  drawHeading2("12.1 Limitations & Future Research Trajectories");
-  drawBullet("Multi-Presenter Handover", "Future work will explore unique hand tracking IDs to allow co-presenters to pass control seamlessly.");
-  drawBullet("Multimodal Voice Fusion", "Combining whisper keywords with micro-gestures for dual-confirmation presentation control.");
-  drawHeading2("12.2 Conclusion");
-  drawText(
-    "AirSlide demonstrates that camera-based Natural User Interfaces can achieve industrial-grade reliability and delightful usability by adhering strictly to fundamental HCI and cognitive human factors principles. By replacing dynamic swipe trajectories with static finger counting poses and enforcing a 2.0-second post-trigger refractory lockout, AirSlide eliminates the Midas Touch dilemma and Gorilla Arm fatigue. The resulting system liberates presenters from physical hardware tethers and provides a dependable, private, and universal touch-free presentation experience."
-  );
-
-  // =========================================================================
-  // PAGE 12: REFERENCES & APPENDICES
-  // =========================================================================
-  newReportPage();
-
-  drawHeading1("13. Academic References");
-  drawText("1. Fitts, P. M. (1954). The information capacity of the human motor system in controlling movement. J. Exp. Psychol., 47(6), 381-391.", 7.5);
-  drawText("2. Hick, W. E. (1952). On the rate of gain of information. Quarterly Journal of Experimental Psychology, 4(1), 11-26.", 7.5);
-  drawText("3. Norman, D. A. (2013). The Design of Everyday Things: Revised and Expanded Edition. Basic Books, New York.", 7.5);
-  drawText("4. Nielsen, J. (1994). Usability Engineering. Morgan Kaufmann Publishers, San Francisco.", 7.5);
-  drawText("5. Shneiderman, B., et al. (2016). Designing the User Interface: Strategies for Effective HCI (6th ed.). Pearson.", 7.5);
-  drawText("6. Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. Cognitive Science, 12(2), 257-285.", 7.5);
-  drawText("7. Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. Usability Evaluation in Industry, 189-194. Taylor & Francis.", 7.5);
-  drawText("8. Lugaresi, C., et al. (2019). MediaPipe: A Framework for Building Perception Pipelines. arXiv:1906.08172.", 7.5);
-  drawText("9. Wigdor, D., & Wixon, D. (2011). Brave NUI World: Designing Natural User Interfaces for Touch and Gesture. Morgan Kaufmann.", 7.5);
-  drawText("10. Hyman, R. (1953). Stimulus information as a determinant of reaction time. Journal of Experimental Psychology, 45(3), 188-196.", 7.5);
-
-  drawHeading1("Appendix A: Team Contributions Matrix");
+  drawHeading2("12.3 Appendix A: Team Contributions Matrix");
   const teamWidths = [140, 200, 165];
   drawTableRow(["Team Member", "Role & Core Responsibilities", "Key Contributions"], teamWidths, true);
   drawTableRow(["Nafyad Fantaye", "HCI Researcher & Lead Developer", "HTA, Norman model, FSM state machine, usability testing"], teamWidths);
   drawTableRow(["Yeabsira Alemu", "Computer Vision & Architecture", "MediaPipe WASM pipeline, EMA laser filter, Fitts/Hicks math"], teamWidths);
   drawTableRow(["Ezana Tadesse", "Interaction Design & Evaluation", "SUS analysis, NASA-TLX workload testing, Nielsen audit"], teamWidths);
   drawTableRow(["Zerubabel Fekadu", "Frontend & Documentation", "PDF generation engine, DOCX generator, UI implementation"], teamWidths);
-
-  drawHeading1("Appendix B: System Usability Scale (SUS) Formula & Percentiles");
-  drawText(
-    "For odd questions (positive), Score Contribution = Scale - 1. For even questions (negative), Score Contribution = 5 - Scale. Total SUS Score = Sum(Contributions) * 2.5 (Range 0 - 100). AirSlide's score of 84.25 places it above the 96th percentile (Grade A 'Excellent').",
-    7.5
-  );
-
-  drawHeading1("Appendix C: System Directory & Module Architecture Map");
-  drawText(
-    "AirSlide-HCI/ -> [src/components/airslide/ (AppShell, ControlBar, CameraView, PDFCanvas), src/routes/ (present.tsx, gestures.tsx, report.tsx, settings.tsx), scripts/ (generate_pdf.mjs, generate_docx.mjs), public/ (WASM models, PDF worker)].",
-    7.5
-  );
 
   // Add Headers & Footers to all pages
   const totalPages = doc.getPageCount();
@@ -677,10 +647,10 @@ async function generateComplete12PageHciPdf() {
   const pdfBytes = await doc.save();
   const outputPath = path.resolve("public/AirSlide_HCI_Report.pdf");
   fs.writeFileSync(outputPath, pdfBytes);
-  console.log(`Complete Academic 12-Page PDF Report generated at: ${outputPath} (${pdfBytes.length} bytes, ${totalPages} pages)`);
+  console.log(`Complete Academic 12-Page PDF Report with Requirements Engineering generated at: ${outputPath} (${pdfBytes.length} bytes, ${totalPages} pages)`);
 }
 
-generateComplete12PageHciPdf().catch((err) => {
+generateCompleteAcademicHciPdf().catch((err) => {
   console.error("Error generating PDF report:", err);
   process.exit(1);
 });

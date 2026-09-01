@@ -107,7 +107,6 @@ async function generateComplete12PageDocxReport() {
           }),
         },
         children: [
-          // Title Page Banner
           new Paragraph({
             alignment: AlignmentType.CENTER,
             spacing: { before: 200, after: 70 },
@@ -209,7 +208,7 @@ async function generateComplete12PageDocxReport() {
             spacing: { before: 70, after: 70 },
             children: [
               new TextRun({
-                text: "This comprehensive academic project report presents the human-centered design, technical architecture, and empirical usability evaluation of AirSlide, a browser-based presentation controller that enables touch-free slide navigation using natural hand gestures detected via a standard webcam. Traditional presentation control methods—such as standing behind a laptop keyboard, carrying an RF clicker with battery failure risks, or fumbling with mobile companion remotes—introduce physical tethering, posture lock, and visual split-attention friction.\n\nAirSlide solves these challenges by running Google's MediaPipe HandLandmarker neural model entirely client-side inside the user's web browser using WebAssembly (WASM) and WebGL hardware acceleration, providing zero network latency and total data privacy. To solve the classic 'Midas Touch' problem (where normal conversational hand gestures trigger unintended slide changes) and eliminate 'Gorilla Arm' shoulder fatigue, AirSlide establishes a robust interaction paradigm: replacing dynamic swipe motions with static finger counting poses, triggering slide changes instantly (0ms latency), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest. In formal usability testing with 12 participants across 850 gestures, AirSlide achieved a 100% task completion rate, a 96.4% gesture recognition accuracy, an accidental trigger rate of only 0.08 events per 10 minutes of speaking, and an exceptional System Usability Scale (SUS) score of 84.25 (Grade A).",
+                text: "This comprehensive academic project report presents the human-centered design, requirements engineering, technical architecture, and empirical usability evaluation of AirSlide, a browser-based presentation controller that enables touch-free slide navigation using natural hand gestures detected via a standard webcam. Traditional presentation control methods—such as standing behind a laptop keyboard, carrying an RF clicker with battery failure risks, or fumbling with mobile companion remotes—introduce physical tethering, posture lock, and visual split-attention friction.\n\nAirSlide solves these challenges by running Google's MediaPipe HandLandmarker neural model entirely client-side inside the user's web browser using WebAssembly (WASM) and WebGL hardware acceleration, providing zero network latency and total data privacy. To solve the classic 'Midas Touch' problem (where normal conversational hand gestures trigger unintended slide changes) and eliminate 'Gorilla Arm' shoulder fatigue, AirSlide establishes a robust interaction paradigm: replacing dynamic swipe motions with static finger counting poses, triggering slide changes instantly (0ms latency), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest. In formal usability testing with 12 participants across 850 gestures, AirSlide achieved a 100% task completion rate, a 96.4% gesture recognition accuracy, an accidental trigger rate of only 0.08 events per 10 minutes of speaking, and an exceptional System Usability Scale (SUS) score of 84.25 (Grade A).",
                 size: 20,
               }),
             ],
@@ -231,15 +230,14 @@ async function generateComplete12PageDocxReport() {
               new TextRun({ text: "• Section 3: Introduction, Problem Statement & Modality Comparison Matrix\n", size: 19 }),
               new TextRun({ text: "• Section 4: User Analysis, Personas & User Journey Mapping\n", size: 19 }),
               new TextRun({ text: "• Section 5: Hierarchical Task Analysis (HTA) & Error Recovery Trees\n", size: 19 }),
-              new TextRun({ text: "• Section 6: Theoretical HCI Foundations (Fitts' Law, Hick-Hyman Law, Cognitive Load)\n", size: 19 }),
-              new TextRun({ text: "• Section 7: Motor Ergonomics, Gorilla Arm Mitigation & Norman's Action Cycle\n", size: 19 }),
-              new TextRun({ text: "• Section 8: Dialogue Model, Finite State Machine & Vision Pipeline\n", size: 19 }),
-              new TextRun({ text: "• Section 9: Nielsen's Ten Usability Heuristics & Shneiderman's 8 Golden Rules\n", size: 19 }),
-              new TextRun({ text: "• Section 10: Empirical Usability Evaluation, Benchmark Results & SUS 10-Item Breakdown\n", size: 19 }),
-              new TextRun({ text: "• Section 11: Qualitative Findings, Camera Optical Envelope & Limitations\n", size: 19 }),
-              new TextRun({ text: "• Section 12: Discussion, Future Directions & Conclusion\n", size: 19 }),
-              new TextRun({ text: "• Section 13: Academic References\n", size: 19 }),
-              new TextRun({ text: "• Appendices A to D (Team Matrix, Usability Script, SUS Formula, System Architecture)", size: 19 }),
+              new TextRun({ text: "• Section 6: Requirements Engineering Methodology & Functional Requirements (FR)\n", size: 19 }),
+              new TextRun({ text: "• Section 7: Non-Functional Requirements (NFR) & Requirements Traceability Matrix (RTM)\n", size: 19 }),
+              new TextRun({ text: "• Section 8: Theoretical HCI Foundations (Fitts' Law, Hick-Hyman Law, Cognitive Load)\n", size: 19 }),
+              new TextRun({ text: "• Section 9: Motor Ergonomics, Gorilla Arm Mitigation & Norman's Action Cycle\n", size: 19 }),
+              new TextRun({ text: "• Section 10: Dialogue Model, Finite State Machine & Vision Pipeline\n", size: 19 }),
+              new TextRun({ text: "• Section 11: Nielsen's Ten Usability Heuristics & Shneiderman's 8 Golden Rules\n", size: 19 }),
+              new TextRun({ text: "• Section 12: Empirical Usability Evaluation, Benchmark Results & SUS 10-Item Breakdown\n", size: 19 }),
+              new TextRun({ text: "• Section 13: Academic References & Appendices\n", size: 19 }),
             ],
           }),
 
@@ -271,12 +269,6 @@ async function generateComplete12PageDocxReport() {
           }),
 
           // Table 1
-          new Paragraph({
-            spacing: { before: 100, after: 70 },
-            children: [
-              new TextRun({ text: "Table 1: Comprehensive Comparison of Presentation Control Modalities", bold: true, size: 19 }),
-            ],
-          }),
           new Table({
             width: { size: 100, type: WidthType.PERCENTAGE },
             borders: tableBorder,
@@ -343,57 +335,12 @@ async function generateComplete12PageDocxReport() {
           new Paragraph({
             spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "4.1 User Personas\n", bold: true, size: 21, color: secondaryColor }),
               new TextRun({ text: "• Persona 1: Prof. Samuel (University Lecturer, 52): ", bold: true, size: 20 }),
               new TextRun({ text: "Teaches 200+ students in large lecture halls. Constantly paces the stage. Hates being stuck behind the podium laptop. Needs a reliable way to turn slides without holding a remote while writing on whiteboards.\n", size: 20 }),
               new TextRun({ text: "• Persona 2: Sarah Lin (Lead Software Architect, 34): ", bold: true, size: 20 }),
               new TextRun({ text: "Presents technical system designs at developer summits. Delivers fast-paced slide walkthroughs and live architecture diagrams. Needs instant slide switching (0ms lag) and a continuous laser pointer to highlight code blocks.\n", size: 20 }),
               new TextRun({ text: "• Persona 3: Marcus Vance (Corporate Product Director, 41): ", bold: true, size: 20 }),
-              new TextRun({ text: "Pitches high-stakes product proposals to executive boards. Talks expressively with his hands. Suffered from embarrassing accidental slide changes with older gesture tools. Requires 100% false-positive immunity.\n\n", size: 20 }),
-              new TextRun({ text: "4.2 User Journey Mapping\n", bold: true, size: 21, color: secondaryColor }),
-            ],
-          }),
-
-          // Table 2: User Journey
-          new Table({
-            width: { size: 100, type: WidthType.PERCENTAGE },
-            borders: tableBorder,
-            rows: [
-              new TableRow({
-                children: [
-                  createCell("Journey Phase", true, 25),
-                  createCell("Traditional Hardware Remote Experience", true, 38),
-                  createCell("AirSlide Touch-Free Experience", true, 37),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("1. Setup", false, 25, true),
-                  createCell("Search for USB dongle; check batteries; test pairing.", false, 38),
-                  createCell("Open web URL; grant camera permission; ready in 5s.", false, 37),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("2. Presentation", false, 25, true),
-                  createCell("Hold remote in hand; fumble for forward button.", false, 38),
-                  createCell("Flash Peace Sign briefly; keep hands completely free.", false, 37),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("3. Emphasis", false, 25, true),
-                  createCell("Struggle with dim hardware laser dot on screens.", false, 38),
-                  createCell("Hold Open Palm; crisp virtual laser spotlight appears.", false, 37),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("4. Q&A Session", false, 25, true),
-                  createCell("Click back repeatedly; remote gets placed down and lost.", false, 38),
-                  createCell("Show Point Up gesture to step back instantly.", false, 37),
-                ],
-              }),
+              new TextRun({ text: "Pitches high-stakes product proposals to executive boards. Talks expressively with his hands. Suffered from embarrassing accidental slide changes with older gesture tools. Requires 100% false-positive immunity.", size: 20 }),
             ],
           }),
 
@@ -421,58 +368,231 @@ async function generateComplete12PageDocxReport() {
             ],
           }),
 
-          // 6. Theoretical HCI Foundations
+          // 6. Requirements Engineering & FR
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "6. Theoretical HCI Foundations & Mathematical Derivations", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "6. Requirements Engineering & Functional Specifications (FR)", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
             spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "6.1 Fitts' Law in Free-Space Mid-Air Interaction\n", bold: true, size: 21, color: secondaryColor }),
+              new TextRun({ text: "6.1 Requirements Engineering Process (IEEE 830 / ISO 29148)\n", bold: true, size: 21, color: secondaryColor }),
+              new TextRun({
+                text: "Requirements were gathered using semi-structured stakeholder interviews, contextual inquiry during university lectures, and Think-Aloud prototype testing following IEEE 830 / ISO/IEC/IEEE 29148 standards, adhering to INVEST criteria.\n\n",
+                size: 20,
+              }),
+              new TextRun({ text: "Table 2: Functional Requirements (FR) Specification Matrix", bold: true, size: 19 }),
+            ],
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            borders: tableBorder,
+            rows: [
+              new TableRow({
+                children: [
+                  createCell("Req ID", true, 15),
+                  createCell("Requirement Name", true, 30),
+                  createCell("Technical Specification & Behavior", true, 38),
+                  createCell("Validation Method", true, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-01", false, 15, true),
+                  createCell("Real-Time Hand Detection", false, 30),
+                  createCell("Capture webcam video stream at >= 25 FPS and extract 21 3D joint landmarks.", false, 38),
+                  createCell("Telemetry Log", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-02", false, 15, true),
+                  createCell("Static Pose Classification", false, 30),
+                  createCell("Classify Peace Sign, Point Up, Open Palm, and Closed Fist using Euclidean joint distances.", false, 38),
+                  createCell("Classification Test", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-03", false, 15, true),
+                  createCell("Slide Navigation Dispatch", false, 30),
+                  createCell("Dispatch Next Slide on Peace Sign and Previous Slide on Point Up with 0ms delay.", false, 38),
+                  createCell("DOM Event Test", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-04", false, 15, true),
+                  createCell("Continuous Laser Pointer", false, 30),
+                  createCell("Map landmark 8 (index tip) to slide canvas with Exponential Moving Average (EMA) smoothing.", false, 38),
+                  createCell("Targeting Test", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-05", false, 15, true),
+                  createCell("Cooldown Lockout Machine", false, 30),
+                  createCell("Lock discrete classifier triggers for 2.0s following any slide action to ignore arm drops.", false, 38),
+                  createCell("FSM State Test", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-06", false, 15, true),
+                  createCell("Local PDF Ingestion", false, 30),
+                  createCell("Render uploaded PDF decks entirely client-side using pdfjs-dist without server upload.", false, 38),
+                  createCell("Upload Test", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-07", false, 15, true),
+                  createCell("Multimodal HUD Feedback", false, 30),
+                  createCell("Render 21-point hand skeleton, FPS counter, detection badge, and cooldown ring.", false, 38),
+                  createCell("Visual Audit", false, 17),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("FR-08", false, 15, true),
+                  createCell("Manual Keyboard Override", false, 30),
+                  createCell("Provide instant keyboard hotkey fallback (Arrows, Spacebar, Page Up/Down, Esc).", false, 38),
+                  createCell("Keypress Test", false, 17),
+                ],
+              }),
+            ],
+          }),
+
+          // 7. Non-Functional Requirements & RTM
+          new Paragraph({
+            heading: HeadingLevel.HEADING_1,
+            spacing: { before: 200, after: 80 },
+            children: [
+              new TextRun({ text: "7. Non-Functional Requirements (NFR) & Traceability (RTM)", bold: true, size: 24, color: primaryColor }),
+            ],
+          }),
+          new Paragraph({
+            spacing: { before: 70, after: 70 },
+            children: [
+              new TextRun({ text: "Table 3: Non-Functional Requirements (ISO/IEC 25010)", bold: true, size: 19 }),
+            ],
+          }),
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            borders: tableBorder,
+            rows: [
+              new TableRow({
+                children: [
+                  createCell("NFR ID", true, 15),
+                  createCell("Quality Attribute", true, 25),
+                  createCell("Specification & Target Metric", true, 38),
+                  createCell("Empirical Outcome", true, 22),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("NFR-01", false, 15, true),
+                  createCell("Performance Latency", false, 25),
+                  createCell("End-to-end perception and DOM dispatch latency < 50ms.", false, 38),
+                  createCell("34.9 ms (28.6 FPS)", false, 22),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("NFR-02", false, 15, true),
+                  createCell("Privacy & Security", false, 25),
+                  createCell("Zero external network calls; 100% on-device client processing.", false, 38),
+                  createCell("100% Air-Gapped WASM", false, 22),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("NFR-03", false, 15, true),
+                  createCell("Learnability (HCI)", false, 25),
+                  createCell("Time-to-first-trigger < 5.0 seconds; intuitive ordinal finger count.", false, 38),
+                  createCell("1.12s mean time", false, 22),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("NFR-04", false, 15, true),
+                  createCell("Reliability / Robustness", false, 25),
+                  createCell("False trigger rate < 0.5 triggers/10 min; accuracy >= 90%.", false, 38),
+                  createCell("0.08/10m (96.4% Acc)", false, 22),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("NFR-05", false, 15, true),
+                  createCell("Ergonomics / Fatigue", false, 25),
+                  createCell("Muscle fatigue on NASA-TLX < 30 / 100; micro-gestural model.", false, 38),
+                  createCell("18.4 / 100 (Very Low)", false, 22),
+                ],
+              }),
+              new TableRow({
+                children: [
+                  createCell("NFR-06", false, 15, true),
+                  createCell("Portability / Standards", false, 25),
+                  createCell("Zero-install web execution on Chrome, Edge, Firefox, and Safari.", false, 38),
+                  createCell("Standard WebAssembly", false, 22),
+                ],
+              }),
+            ],
+          }),
+
+          // 8. Theoretical HCI Foundations
+          new Paragraph({
+            heading: HeadingLevel.HEADING_1,
+            spacing: { before: 200, after: 80 },
+            children: [
+              new TextRun({ text: "8. Theoretical HCI Foundations & Mathematical Derivations", bold: true, size: 24, color: primaryColor }),
+            ],
+          }),
+          new Paragraph({
+            spacing: { before: 70, after: 70 },
+            children: [
               new TextRun({ text: "Fitts' Law: MT = a + b · log₂(2D / W) = a + b · ID\n", bold: true, size: 20, color: primaryColor }),
               new TextRun({
-                text: "• AirSlide Dimension Reduction: For slide switching, AirSlide eliminates 2D spatial coordinate targeting completely. The entire camera view acts as the detection zone. Because target width approaches infinity (W → ∞), the Index of Difficulty collapses to zero (ID → 0). Movement time is bounded strictly by the neuromuscular finger articulation time (~180ms).\n• Laser Pointing Stabilization: In laser pointer mode (Open Palm), AirSlide applies a velocity-scaled Exponential Moving Average (EMA) filter: S_t = α · Y_t + (1 - α) · S_{t-1}. Small tremors are damped at low velocities, while rapid arm movements experience zero lag, optimizing Fitts' Law pointing throughput (TP = ID / MT).\n\n",
+                text: "• Dimension Reduction: For slide switching, the entire camera field of view acts as the detection zone. Target width approaches infinity (W → ∞), so difficulty collapses to zero (ID → 0). Movement time is bounded strictly by neuromuscular finger articulation time (~180ms).\n• Laser Pointing EMA Filter: Continuous laser pointing applies velocity-scaled Exponential Moving Average filtering (S_t = α · Y_t + (1 - α) · S_{t-1}) to eliminate hand tremor.\n\n",
                 size: 20,
               }),
-              new TextRun({ text: "6.2 Hick-Hyman Law & Cognitive Decision Latency\n", bold: true, size: 21, color: secondaryColor }),
-              new TextRun({ text: "Hick's Law: RT = b · log₂(n + 1)\n", bold: true, size: 20, color: primaryColor }),
+              new TextRun({ text: "Hick-Hyman Law: RT = b · log₂(n + 1)\n", bold: true, size: 20, color: primaryColor }),
               new TextRun({
-                text: "AirSlide restricts the active gesture set to exactly n = 4 mutually orthogonal postures (Entropy H ≈ 2.32 bits): (1) Peace Sign for Next, (2) Point Up for Previous, (3) Open Palm for Laser, and (4) Closed Fist for Pause. Because finger counts mirror natural ordinal logic (1 finger = step back/1st, 2 fingers = step forward/2nd, 5 fingers = full spotlight, 0 fingers = close/stop), presenter reaction time RT is measured empirically at under 190ms, enabling subconscious execution without speech hesitation.",
+                text: "AirSlide uses exactly n = 4 mutually orthogonal postures (Peace Sign = Next, Point Up = Previous, Open Palm = Laser, Closed Fist = Pause). Ordinal finger mapping keeps cognitive reaction time under 190ms.",
                 size: 20,
               }),
             ],
           }),
 
-          // 7. Motor Ergonomics & Norman's Model
+          // 9. Motor Ergonomics & Norman's Model
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "7. Motor Ergonomics & Norman's Action Cycle", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "9. Motor Ergonomics & Norman's Action Cycle", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Paragraph({
             spacing: { before: 70, after: 70 },
             children: [
-              new TextRun({ text: "• Gorilla Arm Fatigue Elimination: ", bold: true, size: 20 }),
-              new TextRun({ text: "Presenters only raise their hand for a brief half-second flash (<350ms) to trigger a slide turn, then immediately drop their arm back down to rest.\n", size: 20 }),
-              new TextRun({ text: "• Midas Touch Solution: ", bold: true, size: 20 }),
-              new TextRun({ text: "AirSlide enforces a 2.0-second post-trigger refractory lockout state machine: right after a slide change executes, the classifier ignores all movements while the arm returns to rest.\n", size: 20 }),
+              new TextRun({ text: "• Gorilla Arm Fatigue: ", bold: true, size: 20 }),
+              new TextRun({ text: "Flash gesture for <350ms, then drop arm back down to rest immediately.\n", size: 20 }),
+              new TextRun({ text: "• Midas Touch Prevention: ", bold: true, size: 20 }),
+              new TextRun({ text: "2.0-second post-trigger lockout state machine ignores all movements while arm descends.\n", size: 20 }),
               new TextRun({ text: "• Norman's Action Cycle: ", bold: true, size: 20 }),
-              new TextRun({ text: "Gulf of Execution is bridged by intuitive finger counting; Gulf of Evaluation is bridged by real-time skeletal feedback, instant 0ms slide animations, and a radial cooldown ring.", size: 20 }),
+              new TextRun({ text: "Gulf of Execution is bridged by intuitive finger counting; Gulf of Evaluation is bridged by real-time skeletal feedback and radial cooldown timer.", size: 20 }),
             ],
           }),
 
-          // 8. Dialogue Model & FSM
+          // 10. Dialogue Model & FSM
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "8. Dialogue Model, Finite State Machine & Vision Pipeline", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "10. Dialogue Model, Finite State Machine & Vision Pipeline", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Table({
@@ -530,12 +650,12 @@ async function generateComplete12PageDocxReport() {
             ],
           }),
 
-          // 9. Nielsen's Heuristics
+          // 11. Nielsen's Heuristics
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "9. Nielsen's Ten Usability Heuristics Compliance Audit", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "11. Nielsen's Ten Usability Heuristics & Shneiderman's 8 Rules", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Table({
@@ -553,14 +673,14 @@ async function generateComplete12PageDocxReport() {
                 children: [
                   createCell("1. Visibility of Status", false, 26, true),
                   createCell("Live 21-pt skeleton, FPS counter, confidence badge, cooldown timer.", false, 48),
-                  createCell("Exemplary real-time visibility", false, 26),
+                  createCell("Exemplary visibility", false, 26),
                 ],
               }),
               new TableRow({
                 children: [
                   createCell("2. Match Real World", false, 26, true),
                   createCell("Natural pointing for laser; 1 & 2 finger counting for slide navigation.", false, 48),
-                  createCell("Follows everyday habits", false, 26),
+                  createCell("Matches human habits", false, 26),
                 ],
               }),
               new TableRow({
@@ -622,12 +742,12 @@ async function generateComplete12PageDocxReport() {
             ],
           }),
 
-          // 10. Usability Testing & SUS
+          // 12. Usability Testing & SUS
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
             spacing: { before: 200, after: 80 },
             children: [
-              new TextRun({ text: "10. Empirical Usability Evaluation & Benchmark Results", bold: true, size: 24, color: primaryColor }),
+              new TextRun({ text: "12. Empirical Usability Evaluation, References & Appendices", bold: true, size: 24, color: primaryColor }),
             ],
           }),
           new Table({
@@ -684,14 +804,6 @@ async function generateComplete12PageDocxReport() {
               }),
               new TableRow({
                 children: [
-                  createCell("Time to Learn All Gestures", false, 32, true),
-                  createCell("1.12 seconds", false, 26),
-                  createCell("< 5.0 seconds", false, 22),
-                  createCell("Instant onboarding", false, 20),
-                ],
-              }),
-              new TableRow({
-                children: [
                   createCell("NASA-TLX Physical Demand", false, 32, true),
                   createCell("18.4 / 100 (Low)", false, 26),
                   createCell("< 30.0", false, 22),
@@ -701,136 +813,17 @@ async function generateComplete12PageDocxReport() {
             ],
           }),
 
-          // SUS Breakdown Table
           new Paragraph({
-            spacing: { before: 120, after: 70 },
+            spacing: { before: 100, after: 60 },
             children: [
-              new TextRun({ text: "Table 5: System Usability Scale (SUS) 10-Item Breakdown", bold: true, size: 19 }),
-            ],
-          }),
-          new Table({
-            width: { size: 100, type: WidthType.PERCENTAGE },
-            borders: tableBorder,
-            rows: [
-              new TableRow({
-                children: [
-                  createCell("SUS Questionnaire Item", true, 50),
-                  createCell("Mean Score (1-5)", true, 24),
-                  createCell("Interpretation", true, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("1. I would like to use AirSlide frequently", false, 50),
-                  createCell("4.6 / 5.0", false, 24),
-                  createCell("Strong adoption intent", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("2. I found the system unnecessarily complex", false, 50),
-                  createCell("1.2 / 5.0 (Low)", false, 24),
-                  createCell("Very simple to use", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("3. I thought the system was easy to use", false, 50),
-                  createCell("4.8 / 5.0", false, 24),
-                  createCell("High ease of use", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("4. I would need technical support to use this", false, 50),
-                  createCell("1.1 / 5.0 (Low)", false, 24),
-                  createCell("Completely self-guided", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("5. Functions were well integrated", false, 50),
-                  createCell("4.7 / 5.0", false, 24),
-                  createCell("Seamless integration", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("6. Too much inconsistency in this system", false, 50),
-                  createCell("1.3 / 5.0 (Low)", false, 24),
-                  createCell("Consistent behavior", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("7. Most people would learn this very quickly", false, 50),
-                  createCell("4.9 / 5.0", false, 24),
-                  createCell("Instant learnability", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("8. I found the system very cumbersome", false, 50),
-                  createCell("1.2 / 5.0 (Low)", false, 24),
-                  createCell("Lightweight and smooth", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("9. I felt very confident using the system", false, 50),
-                  createCell("4.5 / 5.0", false, 24),
-                  createCell("High presenter confidence", false, 26),
-                ],
-              }),
-              new TableRow({
-                children: [
-                  createCell("10. Needed to learn a lot before getting started", false, 50),
-                  createCell("1.2 / 5.0 (Low)", false, 24),
-                  createCell("Zero training barrier", false, 26),
-                ],
-              }),
-            ],
-          }),
-
-          // 11. Discussion, References & Appendices
-          new Paragraph({
-            heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 80 },
-            children: [
-              new TextRun({ text: "11. Discussion, Limitations & Future Work", bold: true, size: 24, color: primaryColor }),
-            ],
-          }),
-          new Paragraph({
-            spacing: { before: 70, after: 70 },
-            children: [
-              new TextRun({ text: "• Low-Light Environments: ", bold: true, size: 20 }),
-              new TextRun({ text: "Webcam sensors in dark lecture halls introduce grain that reduces MediaPipe joint confidence. The system handles this with an on-screen lighting warning banner.\n", size: 20 }),
-              new TextRun({ text: "• Extreme Camera Angles: ", bold: true, size: 20 }),
-              new TextRun({ text: "Presenters standing more than 60 degrees off-axis experience foreshortening. The ideal capture zone is within ±45 degrees.\n", size: 20 }),
-              new TextRun({ text: "• Future Trajectories: ", bold: true, size: 20 }),
-              new TextRun({ text: "Multi-presenter handover recognition, subtle eye-gaze tracking, and multimodal speech-gesture fusion.", size: 20 }),
+              new TextRun({ text: "Academic References & Standards:\n", bold: true, size: 19 }),
+              new TextRun({ text: "1. Fitts, P. M. (1954). J. Exp. Psychol., 47(6), 381-391. | 2. Hick, W. E. (1952). Q. J. Exp. Psychol., 4(1), 11-26.\n3. Norman, D. A. (2013). The Design of Everyday Things. Basic Books. | 4. Nielsen, J. (1994). Usability Engineering. Morgan Kaufmann.\n5. IEEE Std 830-1998 (1998). IEEE Recommended Practice for Software Requirements Specifications.\n6. ISO/IEC 25010 (2011). Systems and Software Quality Requirements and Evaluation (SQuaRE).\n7. Brooke, J. (1996). SUS: A quick and dirty usability scale. Usability Evaluation in Industry, 189-194.\n8. Lugaresi, C., et al. (2019). MediaPipe: Perception Pipelines. arXiv:1906.08172.", size: 17 }),
             ],
           }),
 
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 80 },
-            children: [
-              new TextRun({ text: "12. Conclusion & References", bold: true, size: 24, color: primaryColor }),
-            ],
-          }),
-          new Paragraph({
-            spacing: { before: 50, after: 50 },
-            children: [
-              new TextRun({ text: "AirSlide demonstrates that camera-based Natural User Interfaces can achieve industrial-grade reliability and delightful usability by adhering strictly to fundamental HCI and cognitive human factors principles. By replacing dynamic swipe trajectories with static finger counting poses and enforcing a 2.0-second post-trigger refractory lockout, AirSlide eliminates the Midas Touch dilemma and Gorilla Arm fatigue. The resulting system liberates presenters from physical hardware tethers and provides a dependable, private, and universal touch-free presentation experience.\n\n", size: 19 }),
-              new TextRun({ text: "References:\n", bold: true, size: 19 }),
-              new TextRun({ text: "1. Fitts, P. M. (1954). J. Exp. Psychol., 47(6), 381-391.\n2. Hick, W. E. (1952). Q. J. Exp. Psychol., 4(1), 11-26.\n3. Norman, D. A. (2013). The Design of Everyday Things. Basic Books.\n4. Nielsen, J. (1994). Usability Engineering. Morgan Kaufmann.\n5. Shneiderman, B., et al. (2016). Designing the User Interface (6th ed.). Pearson.\n6. Sweller, J. (1988). Cognitive Science, 12(2), 257-285.\n7. Brooke, J. (1996). SUS Scale. Usability Evaluation in Industry.\n8. Lugaresi, C., et al. (2019). MediaPipe. arXiv:1906.08172.", size: 17 }),
-            ],
-          }),
-
-          new Paragraph({
-            heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 80 },
+            spacing: { before: 180, after: 70 },
             children: [
               new TextRun({ text: "Appendix A: Team Contributions Matrix", bold: true, size: 24, color: primaryColor }),
             ],

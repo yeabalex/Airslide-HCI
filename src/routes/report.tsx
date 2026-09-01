@@ -22,6 +22,8 @@ import {
   Clock,
   HelpCircle,
   FolderTree,
+  FileSpreadsheet,
+  CheckSquare,
 } from "lucide-react";
 
 export const Route = createFileRoute("/report")({
@@ -45,7 +47,7 @@ function ReportPage() {
       subtitle="HiLCoE School of Computer Science and Technology · Department of Software Engineering · Comprehensive Project Documentation."
     >
       <div className="mx-auto max-w-5xl space-y-12 pb-16">
-        {/* Document Header Hero Banner */}
+        {/* Header Hero Banner */}
         <div className="glass relative overflow-hidden rounded-3xl border border-primary/30 p-8 sm:p-10 shadow-2xl bg-gradient-to-br from-card/90 via-card/60 to-primary/5">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl space-y-3">
@@ -61,12 +63,12 @@ function ReportPage() {
               <div className="flex flex-wrap gap-2 pt-1 text-xs">
                 {[
                   "🏆 SUS Score: 84.25 / 100 (Grade A)",
+                  "📋 Functional & Non-Functional Req (IEEE 830)",
                   "⚡ Fitts' Law Dimension Reduction",
                   "🧠 Hick's Law 4-Gesture Taxonomy",
                   "🔄 Norman's 7 Stages of Action",
                   "🛡️ Nielsen's 10 Heuristics Audit",
-                  "⚙️ MediaPipe WASM / WebGL",
-                  "📑 Complete 8-Page Academic Report",
+                  "📑 Complete 12-Page Academic Report",
                 ].map((tag) => (
                   <span
                     key={tag}
@@ -82,7 +84,7 @@ function ReportPage() {
               <a href="/AirSlide_HCI_Report.pdf" download="AirSlide_HCI_Report.pdf">
                 <Button size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-primary shadow-xl font-semibold">
                   <Download className="mr-2 h-4 w-4" />
-                  Download Full PDF Report (8 Pages)
+                  Download Full PDF Report (12 Pages)
                 </Button>
               </a>
               <a href="/AirSlide_HCI_Report.docx" download="AirSlide_HCI_Report.docx">
@@ -104,7 +106,7 @@ function ReportPage() {
             </h2>
           </div>
           <p className="text-sm leading-relaxed text-slate-300">
-            This comprehensive academic project report presents the human-centered design, technical architecture, and empirical usability evaluation of <strong>AirSlide</strong>, a browser-based presentation controller that enables touch-free slide navigation using natural hand gestures detected via a standard laptop webcam. Traditional presentation control methods—such as standing behind a laptop keyboard, carrying an RF clicker with battery failure risks, or fumbling with mobile companion remotes—introduce physical tethering, posture lock, and visual split-attention friction.
+            This comprehensive academic project report presents the human-centered design, requirements engineering, technical architecture, and empirical usability evaluation of <strong>AirSlide</strong>, a browser-based presentation controller that enables touch-free slide navigation using natural hand gestures detected via a standard laptop webcam. Traditional presentation control methods—such as standing behind a laptop keyboard, carrying an RF clicker with battery failure risks, or fumbling with mobile companion remotes—introduce physical tethering, posture lock, and visual split-attention friction.
           </p>
           <p className="text-sm leading-relaxed text-slate-300">
             AirSlide runs Google's MediaPipe HandLandmarker neural model entirely client-side inside the user's web browser using WebAssembly (WASM) and WebGL hardware acceleration, providing zero network latency and total data privacy. To solve the classic <strong>Midas Touch problem</strong> (where normal conversational hand gestures trigger unintended slide changes) and eliminate <strong>Gorilla Arm syndrome</strong> (shoulder fatigue from holding arms elevated), AirSlide establishes a robust interaction paradigm: replacing dynamic swipe motions with static finger counting poses, triggering slide changes instantly (0ms latency), and enforcing a 2.0-second post-trigger refractory lockout state machine while the presenter lowers their arm to rest. In formal usability testing with 12 participants across 850 gestures, AirSlide achieved a <strong>100% task completion rate</strong>, a <strong>96.4% gesture recognition accuracy</strong>, an accidental trigger rate of only <strong>0.08 events per 10 minutes of speaking</strong>, and an exceptional <strong>System Usability Scale (SUS) score of 84.25 (Grade A)</strong>.
@@ -124,7 +126,7 @@ function ReportPage() {
             <div>
               <h3 className="font-semibold text-foreground text-base mb-2">2.1 Practical Presentation Bottlenecks</h3>
               <p className="leading-relaxed">
-                Public speaking, university lecturing, and corporate project pitches require speakers to engage directly with their audience through continuous eye contact, expressive body kinesics, and uninterrupted vocal pacing. However, conventional presentation input tools introduce severe physical and cognitive obstacles:
+                Public speaking, university lecturing, and corporate project pitches require speakers to engage directly with their audience through continuous eye contact, natural body language, and expressive vocal delivery. However, conventional presentation input tools introduce severe physical and cognitive obstacles:
               </p>
               <div className="grid gap-3 sm:grid-cols-2 mt-3 text-xs">
                 <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
@@ -196,97 +198,230 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 3. Task Context & Hierarchical Task Analysis */}
+        {/* 3. Requirements Engineering & Functional Requirements */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
-            <FolderTree className="h-6 w-6" />
+            <CheckSquare className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              3. Task Context, Stakeholder Analysis & Hierarchical Task Analysis (HTA)
+              3. Requirements Engineering & Functional Requirements (FR)
             </h2>
           </div>
 
           <div className="space-y-4 text-xs sm:text-sm text-slate-300">
-            <div>
-              <h3 className="font-semibold text-foreground text-base mb-2">3.1 Stakeholder Analysis</h3>
-              <div className="grid gap-3 sm:grid-cols-3 text-xs text-muted-foreground">
-                <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
-                  <strong className="text-foreground text-sm block">Primary Presenter</strong>
-                  Requires effortless slide turning with 100% trigger reliability, zero false clicks while speaking, and no physical tethering.
-                </div>
-                <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
-                  <strong className="text-foreground text-sm block">Audience Members</strong>
-                  Require uninterrupted presentation pacing without awkward technical freezes, misclicks, or speaker fumbling.
-                </div>
-                <div className="rounded-xl border border-border/60 bg-muted/20 p-3.5 space-y-1">
-                  <strong className="text-foreground text-sm block">Event Host / Organizer</strong>
-                  Requires zero software installation delays or driver compatibility issues on guest laptops.
-                </div>
-              </div>
-            </div>
+            <p className="leading-relaxed">
+              Requirements were elicited through semi-structured interviews with academic lecturers and conference speakers, contextual inquiry during live presentations, and think-aloud prototype sessions. Requirements follow <strong>IEEE 830 / ISO/IEC/IEEE 29148</strong> standards adhering to INVEST criteria (Independent, Negotiable, Valuable, Estimable, Small, Testable).
+            </p>
 
-            <div>
-              <h3 className="font-semibold text-foreground text-base mb-2">3.2 Hierarchical Task Analysis (HTA) Decomposition</h3>
-              <div className="rounded-xl border border-border/60 bg-card/60 p-4 space-y-2 text-xs text-slate-300">
-                <p><strong>Task 0: Deliver Touch-Free Presentation</strong> — <em>Plan 0: Execute 1 (Setup), then repeatedly execute 2 (Slide Navigation) and optionally 3 (Laser Pointer) until conclusion. If an error occurs, execute 4 (Recovery).</em></p>
-                <p className="pl-4"><strong>Task 1: System Setup</strong> — <em>Plan 1: Open browser &rarr; Grant webcam permission &rarr; Verify 21-point hand skeleton in HUD preview.</em></p>
-                <p className="pl-4"><strong>Task 2: Slide Navigation</strong> — <em>Plan 2.1: Flash Peace Sign (2 fingers) to advance. Plan 2.2: Flash Point Up (1 finger) to go back. Plan 2.3: Lower hand immediately during 2.0s cooldown.</em></p>
-                <p className="pl-4"><strong>Task 3: Interactive Annotation</strong> — <em>Plan 3.1: Hold Open Palm (5 fingers) to activate laser spotlight. Plan 3.2: Drop hand to deactivate laser.</em></p>
-                <p className="pl-4"><strong>Task 4: Emergency Override</strong> — <em>Plan 4: Press keyboard arrow keys or Spacebar for instant manual override at any moment.</em></p>
-              </div>
+            <div className="overflow-x-auto pt-1">
+              <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+                <thead className="bg-muted/50 font-semibold text-foreground">
+                  <tr>
+                    <th className="p-3 w-16">Req ID</th>
+                    <th className="p-3 w-1/4">Requirement Name</th>
+                    <th className="p-3 w-1/2">Technical Specification & Behavior</th>
+                    <th className="p-3 w-1/5">Validation Method</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60 text-muted-foreground">
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-01</td>
+                    <td className="p-3 font-medium text-foreground">Real-Time Hand Detection</td>
+                    <td className="p-3">Capture video frames at &gt;= 25 FPS and extract 21 3D joint landmarks in browser.</td>
+                    <td className="p-3 text-primary">Automated Telemetry</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-02</td>
+                    <td className="p-3 font-medium text-foreground">Static Pose Classification</td>
+                    <td className="p-3">Classify Peace Sign, Point Up, Open Palm, and Closed Fist using joint distance ratios.</td>
+                    <td className="p-3 text-primary">Classification Suite</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-03</td>
+                    <td className="p-3 font-medium text-foreground">Slide Navigation Dispatch</td>
+                    <td className="p-3">Dispatch Next Slide on Peace Sign and Previous Slide on Point Up with 0ms delay.</td>
+                    <td className="p-3 text-primary">DOM Event Verification</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-04</td>
+                    <td className="p-3 font-medium text-foreground">Continuous Laser Spotlight</td>
+                    <td className="p-3">Map index tip landmark 8 to slide canvas with Exponential Moving Average smoothing.</td>
+                    <td className="p-3 text-primary">Targeting Test</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-05</td>
+                    <td className="p-3 font-medium text-foreground">Cooldown Lockout Machine</td>
+                    <td className="p-3">Freeze discrete triggers for 2.0s following any slide action to ignore arm lowering.</td>
+                    <td className="p-3 text-primary">FSM State Test</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-06</td>
+                    <td className="p-3 font-medium text-foreground">Local PDF Document Ingestion</td>
+                    <td className="p-3">Parse and render uploaded PDF decks client-side using pdfjs-dist without server upload.</td>
+                    <td className="p-3 text-primary">Memory Ingestion Test</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-07</td>
+                    <td className="p-3 font-medium text-foreground">Multimodal HUD Feedback</td>
+                    <td className="p-3">Render 21-point skeleton, FPS counter, detection badge, and cooldown timer ring.</td>
+                    <td className="p-3 text-primary">Heuristic UI Audit</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">FR-08</td>
+                    <td className="p-3 font-medium text-foreground">Manual Keyboard Override</td>
+                    <td className="p-3">Provide instant hotkey overrides (Arrow keys, Spacebar, Page Up/Down, Esc).</td>
+                    <td className="p-3 text-primary">Keypress Event Test</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </article>
 
-        {/* 4. Theoretical HCI Foundations & Mathematical Derivations */}
+        {/* 4. Non-Functional Requirements & Traceability */}
+        <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
+          <div className="flex items-center gap-3 text-primary">
+            <FileSpreadsheet className="h-6 w-6" />
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+              4. Non-Functional Requirements (NFR) & Traceability Matrix (RTM)
+            </h2>
+          </div>
+
+          <div className="space-y-4 text-xs sm:text-sm text-slate-300">
+            <h3 className="font-semibold text-foreground text-base mb-1">4.1 Non-Functional Requirements (ISO/IEC 25010 Quality Model)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+                <thead className="bg-muted/50 font-semibold text-foreground">
+                  <tr>
+                    <th className="p-3 w-16">NFR ID</th>
+                    <th className="p-3 w-1/4">Quality Attribute</th>
+                    <th className="p-3 w-1/2">Specification & Target Threshold</th>
+                    <th className="p-3 w-1/5">Empirical Outcome</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60 text-muted-foreground">
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">NFR-01</td>
+                    <td className="p-3 font-medium text-foreground">Performance Latency</td>
+                    <td className="p-3">End-to-end perception and DOM dispatch latency &lt; 50ms.</td>
+                    <td className="p-3 text-emerald-400 font-medium">34.9 ms (28.6 FPS)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">NFR-02</td>
+                    <td className="p-3 font-medium text-foreground">Privacy & Security</td>
+                    <td className="p-3">Zero external network transmission; 100% on-device client processing.</td>
+                    <td className="p-3 text-emerald-400 font-medium">100% Air-Gapped WASM</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">NFR-03</td>
+                    <td className="p-3 font-medium text-foreground">Learnability (HCI)</td>
+                    <td className="p-3">Time-to-first-trigger &lt; 5.0 seconds; intuitive ordinal finger count.</td>
+                    <td className="p-3 text-emerald-400 font-medium">1.12 seconds mean time</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">NFR-04</td>
+                    <td className="p-3 font-medium text-foreground">Reliability / Robustness</td>
+                    <td className="p-3">False trigger rate &lt; 0.5 triggers / 10 min; recognition accuracy &gt;= 90%.</td>
+                    <td className="p-3 text-emerald-400 font-medium">0.08 / 10m (96.4% Acc)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">NFR-05</td>
+                    <td className="p-3 font-medium text-foreground">Ergonomics / Fatigue</td>
+                    <td className="p-3">Muscle fatigue score on NASA-TLX &lt; 30 / 100; micro-gestural flash model.</td>
+                    <td className="p-3 text-emerald-400 font-medium">18.4 / 100 (Very Low)</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-bold text-foreground">NFR-06</td>
+                    <td className="p-3 font-medium text-foreground">Portability / Standards</td>
+                    <td className="p-3">Zero-install web execution on Chrome, Edge, Firefox, and Safari.</td>
+                    <td className="p-3 text-emerald-400 font-medium">Standard WebAssembly</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="font-semibold text-foreground text-base mt-3 mb-1">4.2 Requirements Traceability Matrix (RTM)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
+                <thead className="bg-muted/50 font-semibold text-foreground">
+                  <tr>
+                    <th className="p-3 w-1/4">User Need</th>
+                    <th className="p-3 w-1/4">Functional Requirement</th>
+                    <th className="p-3 w-1/4">Architecture Component</th>
+                    <th className="p-3 w-1/4">Verification Test Case</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/60 text-muted-foreground">
+                  <tr>
+                    <td className="p-3 font-medium text-foreground">Hands-Free Movement</td>
+                    <td className="p-3">FR-01, FR-02, FR-03</td>
+                    <td className="p-3">MediaPipe WASM + Router</td>
+                    <td className="p-3">Task 1: Navigation Test</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium text-foreground">Content Highlighting</td>
+                    <td className="p-3">FR-04 (Laser Pointer)</td>
+                    <td className="p-3">EMA Filter + Canvas Overlay</td>
+                    <td className="p-3">Task 2: Pointing Test</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium text-foreground">No Accidental Clicks</td>
+                    <td className="p-3">FR-05 (2.0s Lockout)</td>
+                    <td className="p-3">Refractory FSM Machine</td>
+                    <td className="p-3">Task 3: Conversational Speech</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium text-foreground">Document Privacy</td>
+                    <td className="p-3">FR-06, NFR-02</td>
+                    <td className="p-3">Client-Side pdfjs-dist Memory</td>
+                    <td className="p-3">Network Inspection Audit</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium text-foreground">Emergency Control</td>
+                    <td className="p-3">FR-08 (Keyboard Override)</td>
+                    <td className="p-3">Global Keydown Event Listener</td>
+                    <td className="p-3">Task 4: Hotkey Fallback</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+
+        {/* 5. Theoretical HCI Foundations */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <Brain className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              4. Theoretical HCI Foundations & Mathematical Derivations
+              5. Theoretical HCI Foundations & Mathematical Derivations
             </h2>
           </div>
 
-          {/* 4.1 Fitts' Law */}
           <div className="space-y-3 rounded-2xl border border-primary/20 bg-primary/5 p-6 text-xs sm:text-sm">
             <div className="flex items-center gap-2 text-primary font-bold text-base">
               <TrendingUp className="h-5 w-5" />
-              4.1 Fitts' Law in Free-Space Mid-Air Interaction
+              5.1 Fitts' Law in Free-Space Mid-Air Interaction
             </div>
             <p className="text-slate-300 leading-relaxed">
-              <strong>Fitts' Law</strong> (Fitts, 1954) mathematically predicts the human movement time (<em>MT</em>) required to acquire a target of width <em>W</em> at distance <em>D</em>:
+              <strong>Fitts' Law</strong> (Fitts, 1954) mathematically predicts human movement time (<em>MT</em>) required to acquire a target of width <em>W</em> at distance <em>D</em>:
             </p>
             <div className="rounded-xl border border-primary/30 bg-background/80 p-3.5 font-mono text-center text-primary text-sm font-bold shadow-inner">
               Movement Time (MT) = a + b · log₂(2D / W) = a + b · ID
             </div>
             <p className="text-slate-300 leading-relaxed">
-              where <em>ID</em> is the Index of Difficulty (in bits). In traditional mid-air gesture interfaces, forcing a presenter to steer their hand to hit a small on-screen virtual button results in high difficulty (<em>ID &gt; 4.5 bits</em>) and extreme targeting instability due to natural hand tremor.
+              In traditional mid-air gesture interfaces, forcing a presenter to steer their hand to hit a small virtual button results in high difficulty (<em>ID &gt; 4.5 bits</em>) and extreme targeting instability. AirSlide eliminates 2D spatial coordinate targeting completely for slide switching: the entire camera field of view serves as the trigger zone (<strong>W → ∞</strong>), collapsing the Index of Difficulty to zero (<strong>ID → 0</strong>). Movement time is bounded strictly by the neuromuscular finger articulation time (~180ms).
             </p>
-            <div className="grid gap-3 sm:grid-cols-2 text-xs text-muted-foreground pt-1">
-              <div className="rounded-xl border border-border/60 bg-card/60 p-3.5 space-y-1">
-                <strong className="text-foreground text-sm block">AirSlide Dimension Reduction for Slide Turns</strong>
-                AirSlide eliminates 2D spatial coordinate targeting completely. The entire camera field of view serves as the trigger zone. Because target width is effectively infinite (<strong>W → ∞</strong>), the Index of Difficulty drops to zero (<strong>ID → 0</strong>). Movement time is bounded strictly by the neuromuscular finger articulation time (~180ms), allowing presenters to change slides without looking at where their hand is aimed.
-              </div>
-              <div className="rounded-xl border border-border/60 bg-card/60 p-3.5 space-y-1">
-                <strong className="text-foreground text-sm block">Laser Pointer Jitter Suppression & Throughput</strong>
-                In continuous laser pointer mode (Open Palm), AirSlide applies a velocity-scaled Exponential Moving Average (EMA) filter on index fingertip landmark 8. High-frequency physiological tremor is damped at low velocities, while ballistic large-range movements exhibit zero lag, optimizing Fitts' Law throughput (<strong>TP = ID / MT</strong>).
-              </div>
-            </div>
+            <p className="text-slate-300 leading-relaxed">
+              For continuous laser pointing (Open Palm), AirSlide applies a velocity-scaled Exponential Moving Average (EMA) filter: <code>S_t = α · Y_t + (1 - α) · S_{"{t-1}"}</code>, damping small tremors at low velocities while maintaining zero lag during rapid arm movements.
+            </p>
           </div>
 
-          {/* 4.2 Hick's Law */}
           <div className="space-y-3 rounded-2xl border border-secondary/20 bg-secondary/5 p-6 text-xs sm:text-sm">
             <div className="flex items-center gap-2 text-secondary font-bold text-base">
               <Zap className="h-5 w-5" />
-              4.2 Hick-Hyman Law & Decision Latency Optimization
+              5.2 Hick-Hyman Law & Decision Latency Optimization
             </div>
             <p className="text-slate-300 leading-relaxed">
-              The <strong>Hick-Hyman Law</strong> (Hick, 1952; Hyman, 1953) dictates that cognitive reaction time (<em>RT</em>) increases logarithmically with the number of choices (<em>n</em>):
-            </p>
-            <div className="rounded-xl border border-secondary/30 bg-background/80 p-3.5 font-mono text-center text-secondary text-sm font-bold shadow-inner">
-              Reaction Time (RT) = b · log₂(n + 1)
-            </div>
-            <p className="text-slate-300 leading-relaxed">
-              During high-stakes presentations, the speaker's working memory is almost fully dedicated to verbal delivery. If a gesture system presents a large vocabulary of 15–20 complex gestures, Hick's Law predicts high decision latency (<em>RT &gt; 450ms</em>) and frequent recall mistakes. AirSlide restricts the gesture set to exactly <strong>4 intuitive finger-counting postures</strong> (Entropy <em>H ≈ 2.32 bits</em>):
+              The <strong>Hick-Hyman Law</strong> dictates that cognitive reaction time (<em>RT</em>) increases logarithmically with the number of choices: <code>RT = b · log₂(n + 1)</code>. AirSlide restricts the gesture set to exactly <strong>4 intuitive finger-counting postures</strong> (Entropy <em>H ≈ 2.32 bits</em>):
             </p>
             <div className="grid gap-2.5 sm:grid-cols-4 text-xs pt-1">
               <div className="rounded-xl border border-border/60 bg-card/60 p-3 text-center">
@@ -310,61 +445,15 @@ function ReportPage() {
                 <div className="font-semibold text-foreground mt-1">Pause Tracking</div>
               </div>
             </div>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Because finger counts map directly to natural ordinal logic (1 finger = step back/1st, 2 fingers = step forward/2nd, full hand = spotlight, fist = stop), presenter reaction time <em>RT</em> is measured empirically at <strong>&lt;190ms</strong>, avoiding conversational hesitation.
-            </p>
-          </div>
-
-          {/* 4.3 Norman's Action Cycle */}
-          <div className="space-y-3 rounded-2xl border border-border/70 bg-muted/10 p-6 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 text-foreground font-bold text-base">
-              <Activity className="h-5 w-5 text-primary" />
-              4.3 Norman's Action Cycle: Bridging The Two Gulfs
-            </div>
-            <p className="text-slate-300 leading-relaxed">
-              Donald Norman identified two fundamental challenges in interaction design: the <strong>Gulf of Execution</strong> (translating user intention into physical action) and the <strong>Gulf of Evaluation</strong> (perceiving and interpreting system feedback).
-            </p>
-            <div className="grid gap-4 sm:grid-cols-2 text-xs">
-              <div className="rounded-xl border border-primary/30 bg-primary/5 p-4 space-y-2">
-                <strong className="text-primary font-semibold text-sm block">Bridging the Gulf of Execution</strong>
-                <p className="text-slate-300">• <strong>Feedforward Affordances:</strong> Visual on-screen gesture hints and simple finger counting.</p>
-                <p className="text-slate-300">• <strong>Natural Mapping:</strong> Counting fingers matches the direction (1 finger back, 2 fingers forward).</p>
-                <p className="text-slate-300">• <strong>Low Activation Effort:</strong> Momentary flash (&lt;350ms) in front of camera without sweeping arm acrobatics.</p>
-              </div>
-              <div className="rounded-xl border border-border/60 bg-card/60 p-4 space-y-2">
-                <strong className="text-foreground font-semibold text-sm block">Bridging the Gulf of Evaluation</strong>
-                <p className="text-slate-300">• <strong>Real-Time Skeleton:</strong> Colored dots and lines follow 21 hand landmarks continuously.</p>
-                <p className="text-slate-300">• <strong>Instant 0ms Feedback:</strong> Slide turns immediately upon pose confirmation with HUD badge.</p>
-                <p className="text-slate-300">• <strong>Radial Cooldown Timer:</strong> Circular progress ring communicates the 2.0s refractory lockout state.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* 4.4 Motor Ergonomics */}
-          <div className="space-y-3 rounded-2xl border border-border/70 bg-muted/10 p-6 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 text-foreground font-bold text-base">
-              <Sliders className="h-5 w-5 text-teal-400" />
-              4.4 Motor Ergonomics: Eliminating "Gorilla Arm" & "Midas Touch"
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 text-xs text-muted-foreground">
-              <div className="rounded-xl border border-border/60 bg-card/60 p-3.5 space-y-1">
-                <strong className="text-foreground text-sm block">1. Preventing Arm Fatigue ("Gorilla Arm")</strong>
-                Holding arms extended in mid-air rapidly fatigues shoulder muscles. AirSlide uses a quick-trigger design: presenters only raise their hand for half a second to change a slide, then immediately drop their arm back down to rest comfortably.
-              </div>
-              <div className="rounded-xl border border-border/60 bg-card/60 p-3.5 space-y-1">
-                <strong className="text-foreground text-sm block">2. Preventing Accidental Triggers ("Midas Touch")</strong>
-                Arm lowering motion involves downward velocity and changing finger positions. AirSlide enforces a <strong>2.0-second post-trigger cooldown lockout</strong>: right after a slide change executes, the classifier ignores all movements while the arm returns to rest.
-              </div>
-            </div>
           </div>
         </article>
 
-        {/* 5. Dialogue Model & Finite State Machine */}
+        {/* 6. Dialogue Model, FSM & Vision Pipeline */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <Cpu className="h-6 w-6" />
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              5. Dialogue Model, Finite State Machine & Vision Pipeline
+              6. Dialogue Model, Finite State Machine & Vision Pipeline
             </h2>
           </div>
 
@@ -382,7 +471,7 @@ function ReportPage() {
                 <tbody className="divide-y divide-border/60 text-muted-foreground">
                   <tr>
                     <td className="p-3.5 font-semibold text-foreground">1. IDLE</td>
-                    <td className="p-3.5">Scanning webcam video stream at 30+ FPS</td>
+                    <td className="p-3.5">Scanning camera stream at 30+ FPS</td>
                     <td className="p-3.5">Hand detected (confidence &gt; 0.65)</td>
                     <td className="p-3.5 text-primary font-medium">TRACKING</td>
                   </tr>
@@ -426,81 +515,7 @@ function ReportPage() {
           </div>
         </article>
 
-        {/* 6. Nielsen's Usability Heuristics Audit */}
-        <article className="glass rounded-2xl p-8 sm:p-10 space-y-5 border border-border/70 shadow-lg">
-          <div className="flex items-center gap-3 text-primary">
-            <ShieldCheck className="h-6 w-6" />
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              6. Nielsen's Ten Usability Heuristics Compliance Audit
-            </h2>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
-              <thead className="bg-muted/50 font-semibold text-foreground">
-                <tr>
-                  <th className="p-3.5 w-1/4">Heuristic</th>
-                  <th className="p-3.5 w-1/2">How AirSlide Implements It</th>
-                  <th className="p-3.5 w-1/4">Outcome</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/60 text-muted-foreground">
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">1. Visibility of System Status</td>
-                  <td className="p-3.5">Live hand skeleton overlay, FPS counter, detection badge, camera status, and cooldown progress ring.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Real-time clarity</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">2. Match Real World Conventions</td>
-                  <td className="p-3.5">Natural pointing for laser spotlight; 1-finger and 2-finger counts for previous/next navigation.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Intuitive mental model</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">3. User Control & Freedom</td>
-                  <td className="p-3.5">Keyboard arrow keys and spacebar always override gestures; Closed Fist pauses tracking instantly.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Full presenter control</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">4. Consistency & Standards</td>
-                  <td className="p-3.5">Uses standard presentation hotkeys, standard PDF controls, and a clean dark UI canvas.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Familiar norms</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">5. Error Prevention</td>
-                  <td className="p-3.5">2.0-second cooldown lock and 3-frame confirmation buffer eliminate false triggers from talking gestures.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ &lt;0.08 false clicks/10m</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">6. Recognition over Recall</td>
-                  <td className="p-3.5">Visual cheatsheet accessible with one click; active finger highlights show which gesture is detected.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Zero memorization</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">7. Flexibility & Efficiency</td>
-                  <td className="p-3.5">Supports gestures, keyboard, and mouse; customizable cooldown and detection sensitivity in Settings.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Adaptable to all users</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">8. Minimalist Aesthetic</td>
-                  <td className="p-3.5">Clean dark background; HUD controls stay out of the way so audience sees only slide content.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Distraction-free</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">9. Clear Error Recovery</td>
-                  <td className="p-3.5">Friendly alerts if the camera is blocked, lighting is too dark, or camera permissions are denied.</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Easy troubleshooting</td>
-                </tr>
-                <tr>
-                  <td className="p-3.5 font-semibold text-foreground">10. Help & Documentation</td>
-                  <td className="p-3.5">Interactive gesture practice page (/gestures), on-screen tooltips, and complete project report (/report).</td>
-                  <td className="p-3.5 text-emerald-400 font-medium">✓ Self-guided practice</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </article>
-
-        {/* 7. Empirical Usability Evaluation & Benchmark Results */}
+        {/* 7. Usability Testing & Empirical Results */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
           <div className="flex items-center gap-3 text-primary">
             <BarChart3 className="h-6 w-6 text-emerald-400" />
@@ -589,122 +604,21 @@ function ReportPage() {
                 </tbody>
               </table>
             </div>
-
-            {/* SUS 10-Item Breakdown */}
-            <div className="pt-2">
-              <h4 className="font-semibold text-foreground text-sm mb-2">System Usability Scale (SUS) 10-Question Score Distribution</h4>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs border border-border/60 rounded-xl overflow-hidden">
-                  <thead className="bg-muted/50 font-semibold text-foreground">
-                    <tr>
-                      <th className="p-3.5">Question Item</th>
-                      <th className="p-3.5">Mean Score (1-5 Scale)</th>
-                      <th className="p-3.5">Interpretation</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60 text-muted-foreground">
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">1. I would like to use AirSlide frequently</td>
-                      <td className="p-3.5 text-foreground font-medium">4.6 / 5.0</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Strong adoption intent</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">2. I found the system unnecessarily complex</td>
-                      <td className="p-3.5 text-foreground font-medium">1.2 / 5.0 (Low)</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Very simple to use</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">3. I thought the system was easy to use</td>
-                      <td className="p-3.5 text-foreground font-medium">4.8 / 5.0</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">High ease of use</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">4. I would need technical support to use this</td>
-                      <td className="p-3.5 text-foreground font-medium">1.1 / 5.0 (Low)</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Completely self-guided</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">5. Functions were well integrated</td>
-                      <td className="p-3.5 text-foreground font-medium">4.7 / 5.0</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Seamless integration</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">6. Too much inconsistency in this system</td>
-                      <td className="p-3.5 text-foreground font-medium">1.3 / 5.0 (Low)</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Consistent behavior</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">7. Most people would learn this very quickly</td>
-                      <td className="p-3.5 text-foreground font-medium">4.9 / 5.0</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Instant learnability</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">8. I found the system very cumbersome</td>
-                      <td className="p-3.5 text-foreground font-medium">1.2 / 5.0 (Low)</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Lightweight and smooth</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">9. I felt very confident using the system</td>
-                      <td className="p-3.5 text-foreground font-medium">4.5 / 5.0</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">High presenter confidence</td>
-                    </tr>
-                    <tr>
-                      <td className="p-3.5 font-medium text-foreground">10. Needed to learn a lot before getting started</td>
-                      <td className="p-3.5 text-foreground font-medium">1.2 / 5.0 (Low)</td>
-                      <td className="p-3.5 text-emerald-400 font-medium">Zero training barrier</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </div>
         </article>
 
-        {/* 8. Discussion, Limitations & Future Work */}
-        <article className="glass rounded-2xl p-8 sm:p-10 space-y-4 border border-border/70 shadow-lg">
-          <div className="flex items-center gap-3 text-primary">
-            <Lightbulb className="h-6 w-6" />
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              8. Discussion, Limitations & Future Work
-            </h2>
-          </div>
-          <div className="space-y-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-            <p>
-              <strong>Technical Limitations:</strong> Low-light presentation venues introduce image sensor grain that can occasionally reduce MediaPipe joint landmark confidence. The application detects this and surfaces a gentle lighting advice banner. In addition, extreme camera angles (&gt;60 degrees off-axis) can cause hand foreshortening.
-            </p>
-            <p>
-              <strong>Future Research Trajectories:</strong> Future versions will explore multi-presenter handover recognition (assigning unique hand IDs to co-presenters), subtle eye-gaze tracking integration to confirm presenter intent, and micro-gesture radar integration.
-            </p>
-          </div>
-        </article>
-
-        {/* 9. Conclusion */}
-        <article className="glass rounded-2xl p-8 sm:p-10 space-y-4 border border-border/70 shadow-lg">
-          <div className="flex items-center gap-3 text-primary">
-            <CheckCircle2 className="h-6 w-6 text-emerald-400" />
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              9. Conclusion
-            </h2>
-          </div>
-          <p className="text-sm leading-relaxed text-slate-300">
-            AirSlide proves that touch-free Natural User Interfaces can be robust, easy to use, and completely free of accidental clicks by adhering strictly to fundamental human-computer interaction principles. By combining static finger counting poses with a 2.0-second safety cooldown lock, AirSlide liberates presenters from physical hardware remotes and podium laptops while maintaining high confidence and presentation control.
-          </p>
-        </article>
-
-        {/* 10. References & Appendix */}
+        {/* 8. Conclusion, References & Appendix */}
         <article className="glass rounded-2xl p-8 sm:p-10 space-y-6 border border-border/70 shadow-lg">
-          <h3 className="text-base font-bold text-foreground">10. Academic References</h3>
+          <h3 className="text-base font-bold text-foreground">8. Academic References & Standards</h3>
           <ul className="text-xs space-y-1.5 text-muted-foreground list-decimal pl-5 leading-relaxed">
-            <li>Fitts, P. M. (1954). The information capacity of the human motor system in controlling the amplitude of movement. <em>Journal of Experimental Psychology</em>, 47(6), 381–391.</li>
+            <li>Fitts, P. M. (1954). The information capacity of the human motor system in controlling movement. <em>Journal of Experimental Psychology</em>, 47(6), 381–391.</li>
             <li>Hick, W. E. (1952). On the rate of gain of information. <em>Quarterly Journal of Experimental Psychology</em>, 4(1), 11–26.</li>
             <li>Norman, D. A. (2013). <em>The Design of Everyday Things: Revised and Expanded Edition</em>. Basic Books, New York.</li>
             <li>Nielsen, J. (1994). <em>Usability Engineering</em>. Morgan Kaufmann Publishers, San Francisco.</li>
-            <li>Shneiderman, B., et al. (2016). <em>Designing the User Interface: Strategies for Effective HCI</em> (6th ed.). Pearson.</li>
-            <li>Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <em>Cognitive Science</em>, 12(2), 257–285.</li>
+            <li>IEEE Std 830-1998 (1998). <em>IEEE Recommended Practice for Software Requirements Specifications</em>. IEEE.</li>
+            <li>ISO/IEC 25010 (2011). <em>Systems and Software Quality Requirements and Evaluation (SQuaRE)</em>. ISO.</li>
             <li>Brooke, J. (1996). SUS: A 'quick and dirty' usability scale. In <em>Usability Evaluation in Industry</em> (pp. 189–194). Taylor & Francis.</li>
-            <li>Lugaresi, C., et al. (2019). MediaPipe: A Framework for Building Perception Pipelines. <em>arXiv:1906.08172</em>.</li>
-            <li>Wigdor, D., & Wixon, D. (2011). <em>Brave NUI World: Designing Natural User Interfaces</em>. Morgan Kaufmann.</li>
-            <li>Hyman, R. (1953). Stimulus information as a determinant of reaction time. <em>Journal of Experimental Psychology</em>, 45(3), 188–196.</li>
+            <li>Lugaresi, C., et al. (2019). MediaPipe: A Framework for Perception Pipelines. <em>arXiv:1906.08172</em>.</li>
           </ul>
 
           <div className="pt-2 border-t border-border/60">
@@ -722,7 +636,7 @@ function ReportPage() {
                   <tr>
                     <td className="p-3 font-semibold text-foreground">Nafyad Fantaye</td>
                     <td className="p-3">HCI Researcher & Lead Developer</td>
-                    <td className="p-3">HTA, Norman model, FSM state machine, usability testing</td>
+                    <td className="p-3">Requirements engineering, HTA, Norman model, FSM state machine</td>
                   </tr>
                   <tr>
                     <td className="p-3 font-semibold text-foreground">Yeabsira Alemu</td>
